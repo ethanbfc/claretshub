@@ -1,1 +1,12 @@
 <h1>HOME PAGE</h1>
+
+<h2>Articles</h2>
+
+<ul>
+{% for article in object_list %}
+    <li>
+        <a href="{% url 'article-details' article.pk %}">{{ article.title }}</a> | by {{ article.author }} ({{ article.date }})
+        <p>{{ article.body }}</p>
+    </li>
+{% endfor %}
+</ul>

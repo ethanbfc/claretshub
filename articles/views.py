@@ -1,4 +1,11 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
+from .models import Article
 
-def home(request):
-    return render(request, 'index.html')
+class HomeView(ListView):
+    model = Article
+    template_name = 'index.html'
+
+class ArticleDetailView(DetailView):
+    model = Article
+    template_name = 'article.html'
