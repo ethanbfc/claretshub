@@ -1,5 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+
 <h1>{{ article.title }}</h1>
 <small>By: {{ article.author }} | {{ article.date }}</small>
 <p>{{ article.body }}</p>
 
 </br></br><a href="{% url 'home' %}">BACK</a>
+
+{% endblock %}

@@ -1,4 +1,7 @@
-<h1>HOME PAGE</h1>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
 
 <h2>Articles</h2>
 
@@ -10,3 +13,5 @@
     </li>
 {% endfor %}
 </ul>
+
+{% endblock %}
