@@ -9,7 +9,7 @@
 {% for article in object_list %}
     <li>
         <a href="{% url 'article-details' article.pk %}">{{ article.title }}</a> | by {{ article.author }} ({{ article.date }})
-        <p>{{ article.body }}</p>
+        <p>{{ article.snippet }}</p>
     </li>
 {% endfor %}
 </ul>

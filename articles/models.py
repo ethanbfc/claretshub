@@ -5,6 +5,7 @@ from datetime import datetime
 
 class Article(models.Model):
     title = models.CharField(max_length=255)
+    snippet = models.CharField(max_length=255)
     body = models.TextField()
     type = models.CharField(max_length=50)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
