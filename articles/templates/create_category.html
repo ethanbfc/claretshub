@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Create Category{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <h2>Create Category</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    {% else %}
+        <p>You must be logged in to create a category</p>
+    {% endif %}
+
+{% endblock %}

@@ -7,6 +7,7 @@
 
     <h1>{{ article.title }}</h1>
     <small>By: {{ article.author }} | {{ article.date }}</small>
+    <p><small>Category: {{ article.category }}</small></p>
     <p>{{ article.body | safe }}</p>
 
     </br></br><a href="{% url 'home' %}">BACK</a>
