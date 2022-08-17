@@ -6,7 +6,7 @@ from .forms import CreateForm, EditForm
 class HomeView(ListView):
     model = Article
     template_name = 'index.html'
-    ordering = ['-id']
+    ordering = ['-date']
 
 class ArticleDetailView(DetailView):
     model = Article
