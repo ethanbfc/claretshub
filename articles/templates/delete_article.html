@@ -5,12 +5,16 @@
 
 {% block content %}
 
-<h2>Delete Article</h2>
-<h3>Delete: {{ article.title }}?</h3>
+    {% if user.is_authenticated %}
+        <h2>Delete Article</h2>
+        <h3>Delete: {{ article.title }}?</h3>
 
-<form method="POST">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-primary">Delete</button>
-</form>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Delete</button>
+        </form>
+    {% else %}
+        <p>You must be logged in to delete an article</p>
+    {% endif %}
 
 {% endblock %}

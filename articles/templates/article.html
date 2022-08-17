@@ -5,12 +5,15 @@
 
 {% block content %}
 
-<h1>{{ article.title }}</h1>
-<small>By: {{ article.author }} | {{ article.date }}</small>
-<p>{{ article.body }}</p>
+    <h1>{{ article.title }}</h1>
+    <small>By: {{ article.author }} | {{ article.date }}</small>
+    <p>{{ article.body }}</p>
 
-</br></br><a href="{% url 'home' %}">BACK</a>
-</br><a href="{% url 'edit-article' article.pk %}">EDIT</a>
-</br><a href="{% url 'delete-article' article.pk %}">DELETE</a>
+    </br></br><a href="{% url 'home' %}">BACK</a>
+    
+    {% if user.is_authenticated %}
+        </br><a href="{% url 'edit-article' article.pk %}">EDIT</a>
+        </br><a href="{% url 'delete-article' article.pk %}">DELETE</a>
+    {% endif %}
 
 {% endblock %}
