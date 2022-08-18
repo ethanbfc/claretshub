@@ -34,13 +34,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Players</a>
                     </li>
-                    {% if user.is_authenticated %}
+                    {% if user.is_staff %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'create-article' %}">New Article</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'create-category' %}">New Category</a>
                         </li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                         </li>

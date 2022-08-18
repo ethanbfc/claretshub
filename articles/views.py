@@ -17,6 +17,10 @@ class CreateArticleView(CreateView):
     form_class = CreateArticleForm
     template_name = 'create_article.html'
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
 class EditArticleView(UpdateView):
     model = Article
     form_class = EditArticleForm
