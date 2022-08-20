@@ -16,6 +16,7 @@ class Category(models.Model):
 class Article(models.Model):
     title = models.CharField(max_length=255)
     snippet = models.CharField(max_length=255)
+    thumbnail = models.ImageField(blank=True, null=True, upload_to='images/')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     body = RichTextField(blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)

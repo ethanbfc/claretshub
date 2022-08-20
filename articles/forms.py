@@ -4,7 +4,7 @@ from .models import Article, Category
 class CreateArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ('title', 'snippet', 'category', 'body')
+        fields = ('title', 'snippet', 'thumbnail', 'category', 'body')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
