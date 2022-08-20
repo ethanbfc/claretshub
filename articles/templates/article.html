@@ -9,6 +9,9 @@
     <small>By: {{ article.author }} | {{ article.date }}</small>
     <p><small>Category: {{ article.category }}</small></p>
     <p>{{ article.body | safe }}</p>
+    {% if article.thumbnail %}
+        <img src="{{ article.thumbnail.url }}">
+    {% endif %}
 
     </br></br><a href="{% url 'home' %}">BACK</a>
     
