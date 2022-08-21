@@ -1,5 +1,7 @@
 from django import forms
-from .models import Article, MatchReport, Category
+from .models import Article, MatchReport, Category, PlayerProfile
+
+# Create Forms
 
 class CreateArticleForm(forms.ModelForm):
     class Meta:
@@ -33,6 +35,30 @@ class CreateMatchReportForm(forms.ModelForm):
             'stats': forms.Textarea(attrs={'class': 'form-control'})
         }
 
+class CreatePlayerProfileForm(forms.ModelForm):
+    class Meta:
+        model = PlayerProfile
+        fields = ('name', 'dob', 'nationality', 'transfers', 'stats')
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'date': forms.DateInput(),
+            'nationality': forms.TextInput(attrs={'class': 'form-control'}),
+            'transfers': forms.Textarea(attrs={'class': 'form-control'}),
+            'stats': forms.Textarea(attrs={'class': 'form-control'})
+        }
+
+class CreateCategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ('title',)
+
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'})
+        }
+
+# Edit Forms
+
 class EditArticleForm(forms.ModelForm):
     class Meta:
         model = Article
@@ -62,11 +88,15 @@ class EditMatchReportForm(forms.ModelForm):
             'stats': forms.Textarea(attrs={'class': 'form-control'})
         }
 
-class CreateCategoryForm(forms.ModelForm):
+class EditPlayerProfileForm(forms.ModelForm):
     class Meta:
-        model = Category
-        fields = ('title',)
+        model = PlayerProfile
+        fields = ('name', 'dob', 'nationality', 'transfers', 'stats')
 
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'})
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'date': forms.DateInput(),
+            'nationality': forms.TextInput(attrs={'class': 'form-control'}),
+            'transfers': forms.Textarea(attrs={'class': 'form-control'}),
+            'stats': forms.Textarea(attrs={'class': 'form-control'})
         }

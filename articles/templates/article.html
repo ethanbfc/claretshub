@@ -20,6 +20,13 @@
         {% endif %}
     {% endif %}
 
+    {% if article.category.title == "Player Profile" %}
+        <p>{{ article.player_profile.nationality }}</p>
+        {% if user.id == article.author.id %}
+            </br><a href="{% url 'edit-player-profile' article.player_profile.id %}">EDIT PLAYER PROFILE</a>
+        {% endif %}
+    {% endif %}
+
     </br></br><a href="{% url 'home' %}">BACK</a>
     
     {% if user.id == article.author.id %}

@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Create Match Report{% endblock %}
+{% block title %}Create Player Profile{% endblock %}
 
 {% block content %}
 
     {% if user.is_staff %}
-        <h2>Create Match Report</h2>
+        <h2>Create Player Profile</h2>
         <form method="POST">
             {% csrf_token %}
             {{ form.media }}
