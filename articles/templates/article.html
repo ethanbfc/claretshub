@@ -13,6 +13,13 @@
         <img src="{{ article.thumbnail.url }}">
     {% endif %}
 
+    {% if article.category.title == "Match Report" %}
+        <p>{{ article.match_report.stadium }}</p>
+        {% if user.id == article.author.id %}
+            </br><a href="{% url 'edit-match-report' article.match_report.id %}">EDIT MATCH REPORT</a>
+        {% endif %}
+    {% endif %}
+
     </br></br><a href="{% url 'home' %}">BACK</a>
     
     {% if user.id == article.author.id %}

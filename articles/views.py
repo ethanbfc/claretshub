@@ -1,7 +1,7 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Article, MatchReport, Category
-from .forms import CreateArticleForm, CreateMatchReportForm, EditArticleForm, CreateCategoryForm
+from .forms import CreateArticleForm, CreateMatchReportForm, EditArticleForm, EditMatchReportForm, CreateCategoryForm
 
 class HomeView(ListView):
     model = Article
@@ -26,14 +26,15 @@ class CreateMatchReportView(CreateView):
     form_class = CreateMatchReportForm
     template_name = 'create_match_report.html'
 
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
 class EditArticleView(UpdateView):
     model = Article
     form_class = EditArticleForm
     template_name = 'edit_article.html'
+
+class EditMatchReportView(UpdateView):
+    model = MatchReport
+    form_class = EditMatchReportForm
+    template_name = 'edit_match_report.html'
 
 class DeleteArticleView(DeleteView):
     model = Article

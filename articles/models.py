@@ -13,24 +13,9 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse("home")
 
-class Article(models.Model):
-    title = models.CharField(max_length=255)
-    snippet = models.CharField(max_length=255)
-    thumbnail = models.ImageField(upload_to='images/')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    body = RichTextField(default="Default Body Text")
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateTimeField(default=datetime.now)
-
-    def __str__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        return reverse("article-details", kwargs={'pk': self.id})
-
 class MatchReport(models.Model):
-    article = models.OneToOneField(Article, on_delete=models.CASCADE)
     opponent = models.CharField(max_length=50)
+    date = models.DateField(default=datetime.now)
     stadium = models.CharField(max_length=100)
     referee = models.CharField(max_length=255)
     score = models.CharField(max_length=10)
@@ -41,20 +26,37 @@ class MatchReport(models.Model):
     stats = RichTextField()
 
     def __str__(self):
-        return self.article.title
+        return str(self.opponent + " (" + self.date.strftime("%Y-%m-%d") + ")")
 
     def get_absolute_url(self):
-        return reverse("article-details", kwargs={'pk': self.article.id})
+        return reverse("create-article")
 
 class PlayerProfile(models.Model):
-    article = models.OneToOneField(Article, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255, null=True, blank=True)
     dob = models.DateField()
     nationality = models.CharField(max_length=100)
     transfers = RichTextField()
     stats = RichTextField()
 
     def __str__(self):
-        return self.article.title
+        return self.name
 
     def get_absolute_url(self):
-        return reverse("article-details", kwargs={'pk': self.article.id})
+        return reverse("create-article")
+
+class Article(models.Model):
+    title = models.CharField(max_length=255)
+    snippet = models.CharField(max_length=255)
+    thumbnail = models.ImageField(upload_to='images/')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    body = RichTextField(default="Default Body Text")
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateTimeField(default=datetime.now)
+    match_report = models.OneToOneField(MatchReport, on_delete=models.CASCADE, null=True, blank=True)
+    player_profile = models.OneToOneField(PlayerProfile, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("article-details", kwargs={'pk': self.id})
