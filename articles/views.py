@@ -1,12 +1,8 @@
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Article, MatchReport, PlayerProfile, Category
 from .forms import CreateArticleForm, CreateMatchReportForm, CreatePlayerProfileForm, CreateCategoryForm, EditArticleForm, EditMatchReportForm, EditPlayerProfileForm
 
-class HomeView(ListView):
-    model = Article
-    template_name = 'index.html'
-    ordering = ['-date']
 
 class ArticleDetailView(DetailView):
     model = Article
