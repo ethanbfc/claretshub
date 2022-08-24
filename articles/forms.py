@@ -38,13 +38,12 @@ class CreateMatchReportForm(forms.ModelForm):
 class CreatePlayerProfileForm(forms.ModelForm):
     class Meta:
         model = PlayerProfile
-        fields = ('name', 'dob', 'nationality', 'transfers', 'stats')
+        fields = ('name', 'dob', 'nationality', 'stats')
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'date': forms.DateInput(),
             'nationality': forms.TextInput(attrs={'class': 'form-control'}),
-            'transfers': forms.Textarea(attrs={'class': 'form-control'}),
             'stats': forms.Textarea(attrs={'class': 'form-control'})
         }
 
@@ -91,12 +90,11 @@ class EditMatchReportForm(forms.ModelForm):
 class EditPlayerProfileForm(forms.ModelForm):
     class Meta:
         model = PlayerProfile
-        fields = ('name', 'dob', 'nationality', 'transfers', 'stats')
+        fields = ('name', 'dob', 'nationality', 'stats')
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'date': forms.DateInput(),
             'nationality': forms.TextInput(attrs={'class': 'form-control'}),
-            'transfers': forms.Textarea(attrs={'class': 'form-control'}),
             'stats': forms.Textarea(attrs={'class': 'form-control'})
         }

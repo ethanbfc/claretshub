@@ -35,7 +35,6 @@ class PlayerProfile(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
     dob = models.DateField()
     nationality = models.CharField(max_length=100)
-    transfers = RichTextField()
     stats = RichTextField()
 
     def __str__(self):
