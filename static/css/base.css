@@ -1,0 +1,19 @@
+.social-media-icons {
+    display: inline;
+}
+
+@media (max-width: 990px) {
+    .navbar-middle {
+        display: none;
+    }
+
+    .social-media-icons {
+        padding-right: 8px !important;
+    }
+}
+
+@media (min-width: 1000px) {
+    .navbar-end {
+        display: none;
+    }
+}
