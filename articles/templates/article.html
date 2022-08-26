@@ -9,9 +9,6 @@
     <small>By: {{ article.author }} | {{ article.date }}</small>
     <p><small>Category: {{ article.category }}</small></p>
     <p>{{ article.body | safe }}</p>
-    {% if article.thumbnail %}
-        <img src="{{ article.thumbnail.url }}">
-    {% endif %}
 
     {% if article.category.title == "Match Report" %}
         <p>{{ article.match_report.stadium }}</p>
