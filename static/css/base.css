@@ -2,6 +2,16 @@
     display: inline;
 }
 
+.footer {
+    margin-top: 10px;
+}
+
+.footer-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
 @media (max-width: 990px) {
     .navbar-middle {
         display: none;

@@ -6,29 +6,38 @@
 {% block content %}
 
     <h1>{{ article.title }}</h1>
-    <small>By: {{ article.author }} | {{ article.date }}</small>
-    <p><small>Category: {{ article.category }}</small></p>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+    </svg>
+    <small>{{ article.author }}</small>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+    </svg>
+    <small>{{ article.date | date:'dS F o' }}</small>
+
     <p>{{ article.body | safe }}</p>
 
     {% if article.category.title == "Match Report" %}
         <p>{{ article.match_report.stadium }}</p>
-        {% if user.id == article.author.id %}
-            </br><a href="{% url 'edit-match-report' article.match_report.id %}">EDIT MATCH REPORT</a>
-        {% endif %}
     {% endif %}
 
     {% if article.category.title == "Player Profile" %}
         <p>{{ article.player_profile.nationality }}</p>
-        {% if user.id == article.author.id %}
-            </br><a href="{% url 'edit-player-profile' article.player_profile.id %}">EDIT PLAYER PROFILE</a>
-        {% endif %}
     {% endif %}
-
-    </br></br><a href="{% url 'home' %}">BACK</a>
     
+    <!-- Admin Commands -->
     {% if user.id == article.author.id %}
-        </br><a href="{% url 'edit-article' article.pk %}">EDIT</a>
-        </br><a href="{% url 'delete-article' article.pk %}">DELETE</a>
+        <hr>
+        <p>Admin Commands:</p>
+        <a class="btn btn-primary" role="button" href="{% url 'edit-article' article.pk %}">Edit Article Body</a>
+        {% if article.category.title == "Match Report" %}
+            <a class="btn btn-primary" role="button" href="{% url 'edit-match-report' article.match_report.id %}">Edit Match Report</a>
+        {% endif %}
+        {% if article.category.title == "Player Profile" %}
+            <a class="btn btn-primary" role="button" href="{% url 'edit-player-profile' article.player_profile.id %}">Edit Player Profile</a>
+        {% endif %}
+        <a class="btn btn-primary" role="button" href="{% url 'delete-article' article.pk %}">Delete Article</a>
     {% endif %}
 
 {% endblock %}
