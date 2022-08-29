@@ -1,0 +1,21 @@
+.article-container {
+    background-color: #99d6ea !important;
+    max-width: 100%;
+    margin-top: 10px !important;
+}
+
+.article-snippet {
+    margin-top: 5px;
+}
+
+.article-title {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+@media (max-width: 990px) {
+    .mobile-hide {
+        display: none;
+    }
+}
