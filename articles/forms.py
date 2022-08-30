@@ -20,19 +20,26 @@ class CreateArticleForm(forms.ModelForm):
 class CreateMatchReportForm(forms.ModelForm):
     class Meta:
         model = MatchReport
-        fields = ('opponent', 'stadium', 'date', 'referee', 'score', 'burnley_scorers', 'opponent_scorers', 'burnley_team', 'opponent_team', 'stats')
+        fields = ('opponent', 'stadium', 'date', 'officials', 'goals', 'burnley_team', 'opponent_team', 'possession_burnley', 'shots_burnley', 'shots_on_target_burnley', 'corners_burnley', 'fouls_burnley', 'possession_opponent', 'shots_opponent', 'shots_on_target_opponent', 'corners_opponent', 'fouls_opponent')
 
         widgets = {
             'opponent': forms.TextInput(attrs={'class': 'form-control'}),
             'stadium': forms.TextInput(attrs={'class': 'form-control'}),
             'date': forms.DateInput(),
-            'referee': forms.TextInput(attrs={'class': 'form-control'}),
-            'score': forms.TextInput(attrs={'class': 'form-control'}),
-            'burnley_scorers': forms.TextInput(attrs={'class': 'form-control'}),
-            'opponent_scorers': forms.TextInput(attrs={'class': 'form-control'}),
+            'officials': forms.TextInput(attrs={'class': 'form-control'}),
+            'goals': forms.TextInput(attrs={'class': 'form-control'}),
             'burnley_team': forms.Textarea(attrs={'class': 'form-control'}),
             'opponent_team': forms.Textarea(attrs={'class': 'form-control'}),
-            'stats': forms.Textarea(attrs={'class': 'form-control'})
+            'possession_burnley': forms.TextInput(attrs={'class': 'form-control'}),
+            'shots_burnley': forms.TextInput(attrs={'class': 'form-control'}),
+            'shots_on_target_burnley': forms.TextInput(attrs={'class': 'form-control'}),
+            'corners_burnley': forms.TextInput(attrs={'class': 'form-control'}),
+            'fouls_burnley': forms.TextInput(attrs={'class': 'form-control'}),
+            'possession_opponent': forms.TextInput(attrs={'class': 'form-control'}),
+            'shots_opponent': forms.TextInput(attrs={'class': 'form-control'}),
+            'shots_on_target_opponent': forms.TextInput(attrs={'class': 'form-control'}),
+            'corners_opponent': forms.TextInput(attrs={'class': 'form-control'}),
+            'fouls_opponent': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 class CreatePlayerProfileForm(forms.ModelForm):
@@ -72,19 +79,26 @@ class EditArticleForm(forms.ModelForm):
 class EditMatchReportForm(forms.ModelForm):
     class Meta:
         model = MatchReport
-        fields = ('opponent', 'stadium', 'date', 'referee', 'score', 'burnley_scorers', 'opponent_scorers', 'burnley_team', 'opponent_team', 'stats')
+        fields = ('opponent', 'stadium', 'date', 'officials', 'goals', 'burnley_team', 'opponent_team', 'possession_burnley', 'shots_burnley', 'shots_on_target_burnley', 'corners_burnley', 'fouls_burnley', 'possession_opponent', 'shots_opponent', 'shots_on_target_opponent', 'corners_opponent', 'fouls_opponent')
 
         widgets = {
             'opponent': forms.TextInput(attrs={'class': 'form-control'}),
             'stadium': forms.TextInput(attrs={'class': 'form-control'}),
             'date': forms.DateInput(),
-            'referee': forms.TextInput(attrs={'class': 'form-control'}),
-            'score': forms.TextInput(attrs={'class': 'form-control'}),
-            'burnley_scorers': forms.TextInput(attrs={'class': 'form-control'}),
-            'opponent_scorers': forms.TextInput(attrs={'class': 'form-control'}),
+            'officials': forms.TextInput(attrs={'class': 'form-control'}),
+            'goals': forms.TextInput(attrs={'class': 'form-control'}),
             'burnley_team': forms.Textarea(attrs={'class': 'form-control'}),
             'opponent_team': forms.Textarea(attrs={'class': 'form-control'}),
-            'stats': forms.Textarea(attrs={'class': 'form-control'})
+            'possession_burnley': forms.TextInput(attrs={'class': 'form-control'}),
+            'shots_burnley': forms.TextInput(attrs={'class': 'form-control'}),
+            'shots_on_target_burnley': forms.TextInput(attrs={'class': 'form-control'}),
+            'corners_burnley': forms.TextInput(attrs={'class': 'form-control'}),
+            'fouls_burnley': forms.TextInput(attrs={'class': 'form-control'}),
+            'possession_opponent': forms.TextInput(attrs={'class': 'form-control'}),
+            'shots_opponent': forms.TextInput(attrs={'class': 'form-control'}),
+            'shots_on_target_opponent': forms.TextInput(attrs={'class': 'form-control'}),
+            'corners_opponent': forms.TextInput(attrs={'class': 'form-control'}),
+            'fouls_opponent': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 class EditPlayerProfileForm(forms.ModelForm):

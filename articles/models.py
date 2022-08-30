@@ -1,3 +1,5 @@
+from distutils.command.bdist import show_formats
+from sqlite3 import converters
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -17,13 +19,22 @@ class MatchReport(models.Model):
     opponent = models.CharField(max_length=50)
     date = models.DateField(default=datetime.now)
     stadium = models.CharField(max_length=100)
-    referee = models.CharField(max_length=255)
-    score = models.CharField(max_length=10)
-    burnley_scorers = models.CharField(max_length=255)
-    opponent_scorers = models.CharField(max_length=255)
+    officials = models.CharField(max_length=255)
+    goals = models.CharField(max_length=500)
     burnley_team = RichTextField()
     opponent_team = RichTextField()
-    stats = RichTextField()
+    # Stats - Burnley
+    possession_burnley = models.PositiveSmallIntegerField()
+    shots_burnley = models.PositiveSmallIntegerField()
+    shots_on_target_burnley = models.PositiveSmallIntegerField()
+    corners_burnley = models.PositiveSmallIntegerField()
+    fouls_burnley = models.PositiveSmallIntegerField()
+    # Stats - Opponent
+    possession_opponent = models.PositiveSmallIntegerField()
+    shots_opponent = models.PositiveSmallIntegerField()
+    shots_on_target_opponent = models.PositiveSmallIntegerField()
+    corners_opponent = models.PositiveSmallIntegerField()
+    fouls_opponent = models.PositiveSmallIntegerField()
 
     def __str__(self):
         return str(self.opponent + " (" + self.date.strftime("%Y-%m-%d") + ")")
