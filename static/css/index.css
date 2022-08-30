@@ -1,5 +1,4 @@
 .article-container {
-    background-color: #99d6ea !important;
     max-width: 100%;
     margin-top: 10px !important;
 }
@@ -23,7 +22,7 @@ hr {
     margin: 0.5rem 0;
 }
 
-@media (max-width: 990px) {
+@media (max-width: 992px) {
     .mobile-hide {
         display: none;
     }

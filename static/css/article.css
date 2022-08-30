@@ -1,12 +1,26 @@
+.main-container {
+    max-width: 100%;
+}
+
+.article-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .article-title {
     text-decoration: none;
     text-transform: uppercase;
     font-weight: bold;
 }
 
-.article-container {
-    margin-top: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.card-header {
+    background-color: #6c1d45;
+    color: white;
+}
+
+.admin-card-body {
+    padding: 8px 7px;
 }
 
 td {
@@ -15,4 +29,24 @@ td {
 
 th {
     text-align: center;
+}
+
+.player-profile-image {
+    height: 200px;
+    width: 200px;
+    margin-top: 1rem;
+}
+
+/* Mobile & Tablet specific properties */
+@media (max-width: 992px) {
+    .mobile-hide {
+        display: none;
+    }
+
+    .article-col {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: -1;
+    }
 }
