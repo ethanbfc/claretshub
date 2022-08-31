@@ -3,10 +3,14 @@ from django.urls import reverse_lazy
 from .models import Article, MatchReport, PlayerProfile, Category
 from .forms import CreateArticleForm, CreateMatchReportForm, CreatePlayerProfileForm, CreateCategoryForm, EditArticleForm, EditMatchReportForm, EditPlayerProfileForm
 
-
 class ArticleDetailView(DetailView):
     model = Article
     template_name = 'article.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
+        context['articles_list'] = Article.objects.all().order_by('-date')[:3]
+        return context
 
 # Create Views
 
