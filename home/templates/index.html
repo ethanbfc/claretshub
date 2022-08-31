@@ -17,7 +17,7 @@
             {% for article in object_list %}
                     <div class="row">
                         <div class="col-2">
-                            <a href="{% url 'article-details' article.pk %}"><img src="{{ article.thumbnail.url }}" width="150" height="150" alt="{{ article.title }} Thumbnail"></a>
+                            <a href="{% url 'article-details' article.pk %}"><img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail"></a>
                         </div>
                         <div class="col-lg-8">
                             <h4><a class="article-title" href="{% url 'article-details' article.pk %}">{{ article.title }}</a></h4>

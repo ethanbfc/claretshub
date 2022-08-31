@@ -20,7 +20,10 @@ class MatchReport(models.Model):
     date = models.DateField(default=datetime.now)
     stadium = models.CharField(max_length=100)
     officials = models.CharField(max_length=255)
-    goals = models.CharField(max_length=500)
+    burnley_goals = models.PositiveSmallIntegerField()
+    opponent_goals = models.PositiveSmallIntegerField()
+    burnley_scorers = models.CharField(max_length=255)
+    opponent_scorers = models.CharField(max_length=255)
     burnley_team = RichTextField()
     opponent_team = RichTextField()
     # Stats - Burnley
