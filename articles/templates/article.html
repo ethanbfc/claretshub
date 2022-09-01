@@ -20,7 +20,7 @@
             <!-- Admin Commands -->
             {% if user.id == article.author.id %}
                 <div class="card">
-                    <div class="card-header">ADMIN COMMANDS</div>
+                    <div class="card-header">ADMIN</div>
                     <div class="card-body admin-card-body">
                         <a class="btn btn-primary" role="button" href="{% url 'edit-article' article.pk %}">Edit Article Body</a>
                         {% if article.category.title == "Match Report" %}
@@ -151,21 +151,35 @@
 
                     <hr>
                     <div class="row">
-                        <div class="col">
-                            <img src="{{ article.thumbnail.url }}" class="player-profile-image" alt="{{ article.title }} Thumbnail">
+                        <div class="col-sm-3">
+                            <img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail">
                         </div>
                         <div class="col">
-                            <p>{{ article.player_profile.name }}</p>
+                            <p>
+                                <b>Name</b>: {{ article.player_profile.name }}
+                                <br><b>Date of Birth</b>: {{ article.player_profile.dob | date:'dS F o' }} (age {{ article.player_profile.dob | timesince | slice:":2" }})
+                                <br><b>Position</b>: {{ article.player_profile.position }}
+                                <br><b>Nationality</b>: {{ article.player_profile.nationality }}
+                                <br><b>International Caps (Goals)</b>: {{ article.player_profile.international_caps_goals }}
+                            </p>
+                            <p><b>Current Job</b>: {{ article.player_profile.current_job }}</p>
                         </div>
                     </div>
 
-                    <p>{{ article.body | safe }}</p>
                     <hr>
+                    <p>{{ article.body | safe }}</p>
 
-                    <p>PLAYER PROFILE</p>
-                    <p>{{ article.player_profile.dob }}</p>
-                    <p>{{ article.player_profile.nationality }}</p>
-                    <p>{{ article.player_profile.stats | safe }}</p>
+                    <hr>
+                    <h6 class="player-stats-title">Playing Statistics</h6>
+                    <div class="table-responsive">
+                        {{ article.player_profile.player_stats | safe }}
+                    </div>
+
+                    <hr>
+                    <h6 class="player-stats-title">Manager Statistics</h6>
+                    <div class="table-responsive">
+                        {{ article.player_profile.manager_stats | safe }}
+                    </div>
 
                 <!-- General News -->
                 {% else %}
@@ -184,7 +198,7 @@
     <div class="row desktop-hide mobile-col">
         {% if user.id == article.author.id %}
             <div class="card px-0">
-                <div class="card-header">ADMIN COMMANDS</div>
+                <div class="card-header">ADMIN</div>
                 <div class="card-body admin-card-body">
                     <a class="btn btn-primary" role="button" href="{% url 'edit-article' article.pk %}">Edit Article Body</a>
                     {% if article.category.title == "Match Report" %}
@@ -193,7 +207,7 @@
                     {% if article.category.title == "Player Profile" %}
                         <a class="btn btn-primary" role="button" href="{% url 'edit-player-profile' article.player_profile.id %}">Edit Player Profile</a>
                     {% endif %}
-                    <a class="btn btn-primary button-top-margin" role="button" href="{% url 'delete-article' article.pk %}">Delete Article</a>
+                    <a class="btn btn-primary" role="button" href="{% url 'delete-article' article.pk %}">Delete Article</a>
                 </div>
             </div>
             </br>
