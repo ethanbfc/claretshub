@@ -48,13 +48,17 @@ class CreateMatchReportForm(forms.ModelForm):
 class CreatePlayerProfileForm(forms.ModelForm):
     class Meta:
         model = PlayerProfile
-        fields = ('name', 'dob', 'nationality', 'stats')
+        fields = ('name', 'dob', 'position', 'nationality', 'international_caps_goals', 'player_stats', 'manager_stats', 'current_job')
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'date': forms.DateInput(),
+            'dob': forms.DateInput(),
+            'position': forms.TextInput(attrs={'class': 'form-control'}),
             'nationality': forms.TextInput(attrs={'class': 'form-control'}),
-            'stats': forms.Textarea(attrs={'class': 'form-control'})
+            'international_caps_goals': forms.TextInput(attrs={'class': 'form-control'}),
+            'player_stats': forms.Textarea(attrs={'class': 'form-control'}),
+            'manager_stats': forms.Textarea(attrs={'class': 'form-control'}),
+            'current_job': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 class CreateCategoryForm(forms.ModelForm):
@@ -110,11 +114,15 @@ class EditMatchReportForm(forms.ModelForm):
 class EditPlayerProfileForm(forms.ModelForm):
     class Meta:
         model = PlayerProfile
-        fields = ('name', 'dob', 'nationality', 'stats')
+        fields = ('name', 'dob', 'position', 'nationality', 'international_caps_goals', 'player_stats', 'manager_stats', 'current_job')
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'date': forms.DateInput(),
+            'dob': forms.DateInput(),
+            'position': forms.TextInput(attrs={'class': 'form-control'}),
             'nationality': forms.TextInput(attrs={'class': 'form-control'}),
-            'stats': forms.Textarea(attrs={'class': 'form-control'})
+            'international_caps_goals': forms.TextInput(attrs={'class': 'form-control'}),
+            'player_stats': forms.Textarea(attrs={'class': 'form-control'}),
+            'manager_stats': forms.Textarea(attrs={'class': 'form-control'}),
+            'current_job': forms.TextInput(attrs={'class': 'form-control'}),
         }

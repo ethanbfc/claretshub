@@ -46,10 +46,14 @@ class MatchReport(models.Model):
         return reverse("create-article")
 
 class PlayerProfile(models.Model):
-    name = models.CharField(max_length=255, null=True, blank=True)
+    name = models.CharField(max_length=255)
     dob = models.DateField()
+    position = models.CharField(max_length=50)
     nationality = models.CharField(max_length=100)
-    stats = RichTextField()
+    international_caps_goals = models.CharField(max_length=30)
+    player_stats = RichTextField()
+    manager_stats = RichTextField(null=True, blank=True)
+    current_job = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
