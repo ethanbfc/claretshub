@@ -15,6 +15,7 @@
     text-decoration: none;
     text-transform: uppercase;
     font-weight: bold;
+    color: black;
 }
 
 .card-header {
@@ -51,8 +52,27 @@ th {
         display: none;
     }
 
+    .mobile-col {
+        margin-top: 1rem;
+        margin-left: 0rem;
+        margin-right: 0rem
+    }
+
     .article-col {
         width: 100%;
         padding-top: -1;
+    }
+}
+
+@media (max-width: 468px) {
+    .button-top-margin {
+        margin-top: 8px;
+    }
+}
+
+/* Desktop & Laptop specific properties */
+@media (min-width: 1000px) {
+    .desktop-hide {
+        display: none;
     }
 }

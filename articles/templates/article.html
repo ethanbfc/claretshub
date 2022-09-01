@@ -14,12 +14,13 @@
 
 <div class="container p-3 m-0 border-0 main-container">
     <div class="row">
-        <!-- Left Column -->
+        <!-- Desktop Column - Left -->
         <div class="col-3 mobile-hide">
+
             <!-- Admin Commands -->
             {% if user.id == article.author.id %}
                 <div class="card">
-                    <div class="card-header">Admin Commands</div>
+                    <div class="card-header">ADMIN COMMANDS</div>
                     <div class="card-body admin-card-body">
                         <a class="btn btn-primary" role="button" href="{% url 'edit-article' article.pk %}">Edit Article Body</a>
                         {% if article.category.title == "Match Report" %}
@@ -36,7 +37,7 @@
 
             <!-- Latest Articles -->
             <div class="card">
-                <div class="card-header">Latest Articles</div>
+                <div class="card-header">LATEST ARTICLES</div>
                 <div class="card-body">
                     {% for article in articles_list %}
                         <div class="row">
@@ -44,7 +45,7 @@
                                 <a href="{% url 'article-details' article.pk %}"><img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail"></a>
                             </div>
                             <div class="col-9">
-                                <b>{{ article.title }}</b>
+                                <h6><a class="article-title" href="{% url 'article-details' article.pk %}">{{ article.title }}</a></h6>
                                 <p>{{ article.snippet }}</p>
                             </div>
                         </div>
@@ -97,10 +98,10 @@
                     <hr>
                     <div class="row">
                         <div class="col">
-                            <b>Burnley</b>: {{ article.match_report.burnley_team | safe }}
+                            <b>BURNLEY</b> {{ article.match_report.burnley_team | safe }}
                         </div>
                         <div class="col">
-                            <b>{{ article.match_report.opponent }}</b>: {{ article.match_report.opponent_team | safe }}
+                            <b>{{ article.match_report.opponent | upper }}</b> {{ article.match_report.opponent_team | safe }}
                         </div>
                     </div>
 
@@ -174,10 +175,54 @@
             </div>
         </div>
 
-        <!-- Right Column -->
+        <!-- Desktop Column - Right -->
         <div class="col-3 mobile-hide">
         </div>
     </div>
+
+    <!-- Mobile Row - Admin Commands -->
+    <div class="row desktop-hide mobile-col">
+        {% if user.id == article.author.id %}
+            <div class="card px-0">
+                <div class="card-header">ADMIN COMMANDS</div>
+                <div class="card-body admin-card-body">
+                    <a class="btn btn-primary" role="button" href="{% url 'edit-article' article.pk %}">Edit Article Body</a>
+                    {% if article.category.title == "Match Report" %}
+                        <a class="btn btn-primary" role="button" href="{% url 'edit-match-report' article.match_report.id %}">Edit Match Report</a>
+                    {% endif %}
+                    {% if article.category.title == "Player Profile" %}
+                        <a class="btn btn-primary" role="button" href="{% url 'edit-player-profile' article.player_profile.id %}">Edit Player Profile</a>
+                    {% endif %}
+                    <a class="btn btn-primary button-top-margin" role="button" href="{% url 'delete-article' article.pk %}">Delete Article</a>
+                </div>
+            </div>
+            </br>
+        {% endif %}
+    </div>
+
+    <!-- Mobile Row - Latest Articles -->
+    <div class="row desktop-hide mobile-col">
+        <div class="card px-0">
+            <div class="card-header">LATEST ARTICLES</div>
+            <div class="card-body">
+                {% for article in articles_list %}
+                    <div class="row">
+                        <div class="col-3">
+                            <a href="{% url 'article-details' article.pk %}"><img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail"></a>
+                        </div>
+                        <div class="col-9">
+                            <h6><a class="article-title" href="{% url 'article-details' article.pk %}">{{ article.title }}</a></h6>
+                            <p>{{ article.snippet }}</p>
+                        </div>
+                    </div>
+                    {% if not forloop.last%}
+                        <hr>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
 </div>
 
 {% endblock %}
