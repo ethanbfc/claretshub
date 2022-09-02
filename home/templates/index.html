@@ -38,9 +38,24 @@
                     </div>
                     <hr>
             {% endfor %}
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a class="btn btn-primary" role="button" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+                    {% endif %}
+            
+                    <span class="current">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+            
+                    {% if page_obj.has_next %}
+                        <a class="btn btn-primary" role="button" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
         </div>
+
         <!-- Twitter Feed & Social Media -->
-        <div class="col-3 mobile-hide">
+        <div class="col-4 mobile-hide">
             <a class="twitter-timeline" href="https://twitter.com/claretshub?ref_src=twsrc%5Etfw">Tweets by claretshub</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
             <div class="card">
                 <div class="card-header">Follow us on social media to get our latest news</div>
@@ -50,10 +65,6 @@
                     <p>Instagram: <a href="https://www.instagram.com/claretshub_/">@claretshub_</a></p></p>
                 </div>
             </div>
-        </div>
-        <!-- Ads -->
-        <div class="col-1 mobile-hide">
-            col3
         </div>
     </div>
 </div>

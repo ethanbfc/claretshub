@@ -5,3 +5,4 @@ class HomeView(ListView):
     model = Article
     template_name = 'index.html'
     ordering = ['-date']
+    paginate_by = 10
