@@ -3,12 +3,15 @@
     background-color: #f8f8f8;
 }
 
-.article-container {
-    padding-top: 10px;
-    padding-bottom: 10px;
+.article-container-shadow {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
     background-color: white;
+}
+
+.article-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .article-title {

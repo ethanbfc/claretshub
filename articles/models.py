@@ -65,6 +65,7 @@ class Article(models.Model):
     title = models.CharField(max_length=255)
     snippet = models.CharField(max_length=255)
     thumbnail = models.ImageField(upload_to='images/')
+    banner = models.ImageField(upload_to='images/', default='default/default_banner.png')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     body = RichTextField(default="Default Body Text")
     author = models.ForeignKey(User, on_delete=models.CASCADE)

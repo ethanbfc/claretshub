@@ -59,133 +59,136 @@
 
         <!-- Article -->
         <div class="col-6 article-col">
-            <div class="container article-container">
-                <!-- Title and Subtext -->
-                <h1 class="article-title">{{ article.title }}</h1>
+            <div class="article-container-shadow">
+                <img src="{{ article.banner.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail">
+                <div class="container article-container">
+                    <!-- Title and Subtext -->
+                    <h1 class="article-title">{{ article.title }}</h1>
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                </svg>
-                <small class="text-muted">{{ article.author }}</small>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-                </svg>
-                <small class="text-muted">{{ article.date | date:'jS F o' }}</small>
-
-                <!-- Match Report -->
-                {% if article.category.title == "Match Report" %}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                     </svg>
-                    <small class="text-muted">{{ article.match_report.stadium }}</small>
+                    <small class="text-muted">{{ article.author }}</small>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                    </svg>
+                    <small class="text-muted">{{ article.date | date:'jS F o' }}</small>
 
-                    <hr>
-                    {% if article.match_report.stadium == "Turf Moor" %}
-                        <h4 class="article-title">Burnley - {{ article.match_report.burnley_goals }}</h4>
-                        <p><small class="text-muted">{{ article.match_report.burnley_scorers }}</small></p>
-                        <h4 class="article-title">{{ article.match_report.opponent }} - {{ article.match_report.opponent_goals }}</h4>
-                        <p><small class="text-muted">{{ article.match_report.opponent_scorers }}</small></p>
+                    <!-- Match Report -->
+                    {% if article.category.title == "Match Report" %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                        </svg>
+                        <small class="text-muted">{{ article.match_report.stadium }}</small>
+
+                        <hr>
+                        {% if article.match_report.stadium == "Turf Moor" %}
+                            <h4 class="article-title">Burnley - {{ article.match_report.burnley_goals }}</h4>
+                            <p><small class="text-muted">{{ article.match_report.burnley_scorers }}</small></p>
+                            <h4 class="article-title">{{ article.match_report.opponent }} - {{ article.match_report.opponent_goals }}</h4>
+                            <p><small class="text-muted">{{ article.match_report.opponent_scorers }}</small></p>
+                        {% else %}
+                            <h4 class="article-title">{{ article.match_report.opponent }} - {{ article.match_report.opponent_goals }}</h4>
+                            <p><small class="text-muted">{{ article.match_report.opponent_scorers }}</small></p>
+                            <h4 class="article-title">Burnley - {{ article.match_report.burnley_goals }}</h4>
+                            <p><small class="text-muted">{{ article.match_report.burnley_scorers }}</small></p>
+                        {% endif %}
+
+                        <hr>
+                        <p>{{ article.body | safe }}</p>
+
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <b>BURNLEY</b> {{ article.match_report.burnley_team | safe }}
+                            </div>
+                            <div class="col">
+                                <b>{{ article.match_report.opponent | upper }}</b> {{ article.match_report.opponent_team | safe }}
+                            </div>
+                        </div>
+
+                        <hr>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th scope="col">Statistics</th>
+                                <th scope="col">Burnley</th>
+                                <th scope="col">{{ article.match_report.opponent }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">Possession</th>
+                                <td>{{ article.match_report.possession_burnley }}%</td>
+                                <td>{{ article.match_report.possession_opponent }}%</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Shots</th>
+                                <td>{{ article.match_report.shots_burnley }}</td>
+                                <td>{{ article.match_report.shots_opponent }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Shots on Target</th>
+                                <td>{{ article.match_report.shots_on_target_burnley }}</td>
+                                <td>{{ article.match_report.shots_on_target_opponent }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Corners</th>
+                                <td>{{ article.match_report.corners_burnley }}</td>
+                                <td>{{ article.match_report.corners_opponent }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Fouls</th>
+                                <td>{{ article.match_report.fouls_burnley }}</td>
+                                <td>{{ article.match_report.fouls_opponent }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <hr>
+                        <p><b>Officials</b>: {{ article.match_report.officials }}</p>
+
+                    <!-- Player Profile -->
+                    {% elif article.category.title == "Player Profile" %}
+
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail">
+                            </div>
+                            <div class="col">
+                                <p>
+                                    <b>Name</b>: {{ article.player_profile.name }}
+                                    <br><b>Date of Birth</b>: {{ article.player_profile.dob | date:'dS F o' }} (age {{ article.player_profile.dob | timesince | slice:":2" }})
+                                    <br><b>Position</b>: {{ article.player_profile.position }}
+                                    <br><b>Nationality</b>: {{ article.player_profile.nationality }}
+                                    <br><b>International Caps (Goals)</b>: {{ article.player_profile.international_caps_goals }}
+                                </p>
+                                <p><b>Current Job</b>: {{ article.player_profile.current_job }}</p>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <p>{{ article.body | safe }}</p>
+
+                        <hr>
+                        <h6 class="player-stats-title">Playing Statistics</h6>
+                        <div class="table-responsive">
+                            {{ article.player_profile.player_stats | safe }}
+                        </div>
+
+                        <hr>
+                        <h6 class="player-stats-title">Manager Statistics</h6>
+                        <div class="table-responsive">
+                            {{ article.player_profile.manager_stats | safe }}
+                        </div>
+
+                    <!-- General News -->
                     {% else %}
-                        <h4 class="article-title">{{ article.match_report.opponent }} - {{ article.match_report.opponent_goals }}</h4>
-                        <p><small class="text-muted">{{ article.match_report.opponent_scorers }}</small></p>
-                        <h4 class="article-title">Burnley - {{ article.match_report.burnley_goals }}</h4>
-                        <p><small class="text-muted">{{ article.match_report.burnley_scorers }}</small></p>
+                        <hr>
+                        <p>{{ article.body | safe }}</p>
                     {% endif %}
-
-                    <hr>
-                    <p>{{ article.body | safe }}</p>
-
-                    <hr>
-                    <div class="row">
-                        <div class="col">
-                            <b>BURNLEY</b> {{ article.match_report.burnley_team | safe }}
-                        </div>
-                        <div class="col">
-                            <b>{{ article.match_report.opponent | upper }}</b> {{ article.match_report.opponent_team | safe }}
-                        </div>
-                    </div>
-
-                    <hr>
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th scope="col">Statistics</th>
-                            <th scope="col">Burnley</th>
-                            <th scope="col">{{ article.match_report.opponent }}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">Possession</th>
-                            <td>{{ article.match_report.possession_burnley }}%</td>
-                            <td>{{ article.match_report.possession_opponent }}%</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Shots</th>
-                            <td>{{ article.match_report.shots_burnley }}</td>
-                            <td>{{ article.match_report.shots_opponent }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Shots on Target</th>
-                            <td>{{ article.match_report.shots_on_target_burnley }}</td>
-                            <td>{{ article.match_report.shots_on_target_opponent }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Corners</th>
-                            <td>{{ article.match_report.corners_burnley }}</td>
-                            <td>{{ article.match_report.corners_opponent }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Fouls</th>
-                            <td>{{ article.match_report.fouls_burnley }}</td>
-                            <td>{{ article.match_report.fouls_opponent }}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-                    <hr>
-                    <p><b>Officials</b>: {{ article.match_report.officials }}</p>
-
-                <!-- Player Profile -->
-                {% elif article.category.title == "Player Profile" %}
-
-                    <hr>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail">
-                        </div>
-                        <div class="col">
-                            <p>
-                                <b>Name</b>: {{ article.player_profile.name }}
-                                <br><b>Date of Birth</b>: {{ article.player_profile.dob | date:'dS F o' }} (age {{ article.player_profile.dob | timesince | slice:":2" }})
-                                <br><b>Position</b>: {{ article.player_profile.position }}
-                                <br><b>Nationality</b>: {{ article.player_profile.nationality }}
-                                <br><b>International Caps (Goals)</b>: {{ article.player_profile.international_caps_goals }}
-                            </p>
-                            <p><b>Current Job</b>: {{ article.player_profile.current_job }}</p>
-                        </div>
-                    </div>
-
-                    <hr>
-                    <p>{{ article.body | safe }}</p>
-
-                    <hr>
-                    <h6 class="player-stats-title">Playing Statistics</h6>
-                    <div class="table-responsive">
-                        {{ article.player_profile.player_stats | safe }}
-                    </div>
-
-                    <hr>
-                    <h6 class="player-stats-title">Manager Statistics</h6>
-                    <div class="table-responsive">
-                        {{ article.player_profile.manager_stats | safe }}
-                    </div>
-
-                <!-- General News -->
-                {% else %}
-                    <hr>
-                    <p>{{ article.body | safe }}</p>
-                {% endif %}
+                </div>
             </div>
         </div>
 

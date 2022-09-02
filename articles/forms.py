@@ -6,7 +6,7 @@ from .models import Article, MatchReport, Category, PlayerProfile
 class CreateArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ('title', 'snippet', 'thumbnail', 'category', 'body', 'match_report', 'player_profile')
+        fields = ('title', 'snippet', 'thumbnail', 'banner', 'category', 'body', 'match_report', 'player_profile')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
@@ -75,7 +75,7 @@ class CreateCategoryForm(forms.ModelForm):
 class EditArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ('title', 'snippet', 'body')
+        fields = ('title', 'snippet', 'thumbnail', 'banner', 'body')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
