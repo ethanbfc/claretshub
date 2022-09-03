@@ -60,7 +60,9 @@
         <!-- Article -->
         <div class="col-6 article-col">
             <div class="article-container-shadow">
-                <img src="{{ article.banner.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail">
+                {% if article.banner.url is not None %}
+                    <img src="{{ article.banner.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail">
+                {% endif %}
                 <div class="container article-container">
                     <!-- Title and Subtext -->
                     <h1 class="article-title">{{ article.title }}</h1>
@@ -177,11 +179,13 @@
                             {{ article.player_profile.player_stats | safe }}
                         </div>
 
-                        <hr>
-                        <h6 class="player-stats-title">Manager Statistics</h6>
-                        <div class="table-responsive">
-                            {{ article.player_profile.manager_stats | safe }}
-                        </div>
+                        {% if article.player_profile.manager_stats == "null" %}
+                            <hr>
+                            <h6 class="player-stats-title">Manager Statistics</h6>
+                            <div class="table-responsive">
+                                {{ article.player_profile.manager_stats | safe }}
+                            </div>
+                        {% endif %}
 
                     <!-- General News -->
                     {% else %}
