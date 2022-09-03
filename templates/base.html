@@ -122,41 +122,26 @@
           <div class="container p-4">
             <div class="row">
               <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Clarets Hub</h5>
+                <h5 class="text-uppercase">About Clarets Hub</h5>
                 <p>Clarets Hub is the home of news for Burnley FC. We cover transfers, matches, players and any other news about the clarets.</p>
               </div>
               <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                 <h5>CLARETS HUB</h5>
                 <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#!" class="footer-link">About</a>
-                  </li>
-                  <li>
-                    <a href="#!" class="footer-link">Contact Us</a>
-                  </li>
-                  <li>
-                    <a href="#!" class="footer-link">Openings</a>
-                  </li>
-                  <li>
-                    <a href="#!" class="footer-link">Dev Log</a>
-                  </li>
+                  <li><a href="{% url 'about' %}" class="footer-link">About</a></li>
+                  <li><a href="#!" class="footer-link">Contact Us</a></li>
+                  <li><a href="{% url 'jobs' %}" class="footer-link">Jobs / Openings</a></li>
+                  <li><a href="#!" class="footer-link">Development Log</a></li>
                 </ul>
               </div>
               <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                 <h5>LEGAL</h5>
                 <ul class="list-unstyled">
-                  <li>
-                    <a href="#!" class="footer-link">Terms of Service</a>
-                  </li>
-                  <li>
-                    <a href="#!" class="footer-link">Privacy Policy</a>
-                  </li>
-                  <li>
-                    <a href="#!" class="footer-link">Cookie Policy</a>
-                  </li>
-                  <li>
-                    <a href="#!" class="footer-link">Accessibility</a>
-                  </li>
+                  <li><a href="{% url 'terms-of-service' %}" class="footer-link">Terms of Service</a></li>
+                  <li><a href="{% url 'privacy-policy' %}" class="footer-link">Privacy Policy</a></li>
+                  <li><a href="{% url 'cookie-policy' %}" class="footer-link">Cookie Policy</a></li>
+                  <li><a href="{% url 'accessibility' %}" class="footer-link">Accessibility</a></li>
+                  <li><a href="{% url 'advertising' %}" class="footer-link">Advertising</a></li>
                 </ul>
               </div>
             </div>

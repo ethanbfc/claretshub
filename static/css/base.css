@@ -16,6 +16,11 @@
     font-weight: bold;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 @media (max-width: 990px) {
     .navbar-middle {
         display: none;
