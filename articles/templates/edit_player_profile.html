@@ -3,19 +3,70 @@
 
 {% block title %}Edit Player Profile{% endblock %}
 
+{% block head %}
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/form_pages.css' %}">
+
+{% endblock %}
+
 {% block content %}
 
-    {% if user.is_authenticated %}
-        <h2>Edit Player Profile</h2>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.media }}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Update</button>
-        </form>
-    {% else %}
-            <p>You must be logged in to edit an article</p>
-            <p>You can only edit an article you have created</p>
-    {% endif %}
+<div class="container p-3 m-0 border-0 main-container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="container form-container">
+                {% if user.is_staff %}
+                    <h1 class="title">Edit Player Profile</h1>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.media }}
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            {{ form.name }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Date of Birth</label>
+                            {{ form.dob }}
+                            <div class="form-text">Format: YYYY-MM-DD</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Position</label>
+                            {{ form.position }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nationality</label>
+                            {{ form.nationality }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">International Goals & Caps</label>
+                            {{ form.international_caps_goals }}
+                            <div class="form-text">Format: Caps (Goals)</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Playing Statistics</label>
+                            {{ form.player_stats }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Manager Statistics</label>
+                            {{ form.manager_stats }}
+                            <div class="form-text">If this person has never been a manager, then please input 'null'</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Current Job</label>
+                            {{ form.current_job }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                {% else %}
+                    <h1 class="title">Invalid Request</h1>
+                    <p>You do not have the correct permissions to edit a player profile.</p>
+                    <p>If you think this is a mistake, please <a href="#">contact us</a> to get in touch with an administrator.</p>
+                    <p>If you would like to write for us, then please check out our <a href="#">openings</a>.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

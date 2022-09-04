@@ -11,6 +11,8 @@ class CreateArticleForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'snippet': forms.TextInput(attrs={'class': 'form-control'}),
+            'thumbnail': forms.FileInput(attrs={'class': 'form-control'}),
+            'banner': forms.FileInput(attrs={'class': 'form-control'}),
             'category': forms.Select(attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
             'match_report': forms.Select(attrs={'class': 'form-control'}),
@@ -25,7 +27,7 @@ class CreateMatchReportForm(forms.ModelForm):
         widgets = {
             'opponent': forms.TextInput(attrs={'class': 'form-control'}),
             'stadium': forms.TextInput(attrs={'class': 'form-control'}),
-            'date': forms.DateInput(),
+            'date': forms.DateInput(attrs={'class': 'form-control'}),
             'officials': forms.TextInput(attrs={'class': 'form-control'}),
             'burnley_goals': forms.TextInput(attrs={'class': 'form-control'}),
             'burnley_scorers': forms.TextInput(attrs={'class': 'form-control'}),
@@ -52,7 +54,7 @@ class CreatePlayerProfileForm(forms.ModelForm):
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'dob': forms.DateInput(),
+            'dob': forms.DateInput(attrs={'class': 'form-control'}),
             'position': forms.TextInput(attrs={'class': 'form-control'}),
             'nationality': forms.TextInput(attrs={'class': 'form-control'}),
             'international_caps_goals': forms.TextInput(attrs={'class': 'form-control'}),
@@ -80,6 +82,8 @@ class EditArticleForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'snippet': forms.TextInput(attrs={'class': 'form-control'}),
+            'thumbnail': forms.FileInput(attrs={'class': 'form-control'}),
+            'banner': forms.FileInput(attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'})
         }
 
@@ -91,7 +95,7 @@ class EditMatchReportForm(forms.ModelForm):
         widgets = {
             'opponent': forms.TextInput(attrs={'class': 'form-control'}),
             'stadium': forms.TextInput(attrs={'class': 'form-control'}),
-            'date': forms.DateInput(),
+            'date': forms.DateInput(attrs={'class': 'form-control'}),
             'officials': forms.TextInput(attrs={'class': 'form-control'}),
             'burnley_goals': forms.TextInput(attrs={'class': 'form-control'}),
             'burnley_scorers': forms.TextInput(attrs={'class': 'form-control'}),
@@ -118,7 +122,7 @@ class EditPlayerProfileForm(forms.ModelForm):
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'dob': forms.DateInput(),
+            'dob': forms.DateInput(attrs={'class': 'form-control'}),
             'position': forms.TextInput(attrs={'class': 'form-control'}),
             'nationality': forms.TextInput(attrs={'class': 'form-control'}),
             'international_caps_goals': forms.TextInput(attrs={'class': 'form-control'}),

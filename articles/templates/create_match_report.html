@@ -3,18 +3,126 @@
 
 {% block title %}Create Match Report{% endblock %}
 
+{% block head %}
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/form_pages.css' %}">
+
+{% endblock %}
+
 {% block content %}
 
-    {% if user.is_staff %}
-        <h2>Create Match Report</h2>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.media }}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    {% else %}
-        <p>You must be logged in to create an article</p>
-    {% endif %}
+<div class="container p-3 m-0 border-0 main-container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="container form-container">
+                {% if user.is_staff %}
+                    <h1 class="title">Create Match Report</h1>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.media }}
+                        <div class="mb-3">
+                            <label class="form-label">Opponent</label>
+                            {{ form.opponent }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Stadium</label>
+                            {{ form.stadium }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Date</label>
+                            {{ form.date }}
+                            <div class="form-text">Format: YYYY-MM-DD</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Officials</label>
+                            {{ form.officials }}
+                            <div class="form-text">Please include the referee, linesmen and the fourth official</div>
+                        </div>
+
+                        <hr>
+                        <h3 class="title">Burnley</h3>
+                        <div class="mb-3">
+                            <label class="form-label">Team</label>
+                            {{ form.burnley_team }}
+                            <div class="form-text">Yellow Card: 🟨 , Red Card: 🟥</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Goals</label>
+                            {{ form.burnley_goals }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Scorers</label>
+                            {{ form.burnley_scorers }}
+                            <div class="form-text">Please include the players' full name and minute scored</div>
+                        </div>
+
+                        <hr>
+                        <h3 class="title">Opponent</h3>
+                        <div class="mb-3">
+                            <label class="form-label">Team</label>
+                            {{ form.opponent_team }}
+                            <div class="form-text">Yellow Card: 🟨 , Red Card: 🟥</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Goals</label>
+                            {{ form.opponent_goals }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Scorers</label>
+                            {{ form.opponent_scorers }}
+                            <div class="form-text">Please include the players' full name and minute scored</div>
+                        </div>
+
+                        <hr>
+                        <h3 class="title">Match Statistics</h3>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Burnley</th>
+                                <th scope="col">Opponent</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">Possession</th>
+                                <td>{{ form.possession_burnley }}</td>
+                                <td>{{ form.possession_opponent }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Shots</th>
+                                <td>{{ form.shots_burnley }}</td>
+                                <td>{{ form.shots_opponent }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Shots on Target</th>
+                                <td>{{ form.shots_on_target_burnley }}</td>
+                                <td>{{ form.shots_on_target_opponent }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Corners</th>
+                                <td>{{ form.corners_burnley }}</td>
+                                <td>{{ form.corners_opponent }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Fouls</th>
+                                <td>{{ form.fouls_burnley }}</td>
+                                <td>{{ form.fouls_opponent }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                {% else %}
+                    <h1 class="title">Invalid Request</h1>
+                    <p>You do not have the correct permissions to create a match report.</p>
+                    <p>If you think this is a mistake, please <a href="#">contact us</a> to get in touch with an administrator.</p>
+                    <p>If you would like to write for us, then please check out our <a href="#">openings</a>.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

@@ -3,19 +3,56 @@
 
 {% block title %}Edit Article{% endblock %}
 
+{% block head %}
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/form_pages.css' %}">
+
+{% endblock %}
+
 {% block content %}
 
-    {% if user.id == article.author.id %}
-        <h2>Edit Article</h2>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.media }}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Update</button>
-        </form>
-    {% else %}
-            <p>You must be logged in to edit an article</p>
-            <p>You can only edit an article you have created</p>
-    {% endif %}
+<div class="container p-3 m-0 border-0 main-container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="container form-container">
+                {% if user.is_staff %}
+                    <h1 class="title">Edit Article</h1>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.media }}
+                        <div class="mb-3">
+                            <label class="form-label">Title</label>
+                            {{ form.title }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Thumbnail</label>
+                            {{ form.thumbnail }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Banner</label>
+                            {{ form.banner }}
+                            <div class="form-text">Player profiles do not require a banner</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Snippet</label>
+                            {{ form.snippet }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Body</label>
+                            {{ form.body }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                {% else %}
+                    <h1 class="title">Invalid Request</h1>
+                    <p>You do not have the correct permissions to edit an article.</p>
+                    <p>If you think this is a mistake, please <a href="#">contact us</a> to get in touch with an administrator.</p>
+                    <p>If you would like to write for us, then please check out our <a href="#">openings</a>.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
