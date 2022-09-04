@@ -136,3 +136,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+CKEDITOR_CONFIGS = {'default': {'width': 'auto'}}
+
+# Email Settings
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'claretshub@gmail.com'
+EMAIL_HOST_PASSWORD = config("GMAIL_PASSWORD")
+EMAIL_USE_TLS = True
