@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}About{% endblock %}
+
 {% block head %}
 
 <!-- CSS -->
@@ -15,7 +17,36 @@
         <div class="col-lg-6">
             <div class="container about-container">
                 <h1><b>About Us</b></h1>
-                <p>Clarets Hub is a news site dedicated to the coverage of Burnley FC.</p>
+                <p>
+                    Clarets Hub is an independent news site dedicated to the coverage of Burnley Football Club. We aim to cover matches, transfers and any other news that 
+                    is related to the club. If you're a fan of Burnley and want to stay up to date with the latest news around the club, then this is the website for you.
+                </p>
+                <p>
+                    Clarets Hub was created by a single university student looking for a project to commit to over summer. As a student studying computer science and also a 
+                    massive fan of Burnley FC, the idea to develop a website related to Burnley was obvious. Therefore this site was developed over the course of a summer, 
+                    with the use of Django for the backend and simple HTML, CSS and Bootstrap templates for the frontend.
+                </p>
+                <p>
+                    Clarets Hub is currently ran by the sole creator, who is responsible for article creation, community management as well as the continued development 
+                    of the website. We currently aim to publish two articles per week, however this isn't guaranteed due to other real-life responsibilities. There is 
+                    the possibility of recruiting additional people to help with content creation/website development; if this interests you, then please check 
+                    out our <a href="{% url 'jobs' %}">openings</a> to see which positions we currently have available.
+                </p>
+                <h3><b>Commercial</b></h3>
+                <p>
+                    Clarets Hub currently generates income through advertisements provided by Google Adsense. This money is used to help pay for the domain name and the 
+                    hosting  of the website. If you would like more information about our current commerical situation, then please have a look at our 
+                    <a href="{% url 'advertising' %}">advertising</a> page.
+                </p>
+                <p>
+                    We are always open to new sponsorships. If you are interested in sponsoring Clarets Hub (or just advertising on the site), then please send us 
+                    a message using the <a href="{% url 'contact' %}">contact us</a> and we will discuss it from there.
+                </p>
+                <h3><b>Feedback</b></h3>
+                <p>
+                    We aim to provide well-written, quality articles which are factually correct. If you find a mistake in our articles, or generally have any other 
+                    feedback you wish to share, then please write to us using the <a href="{% url 'contact' %}">contact us</a> form.
+                </p>
             </div>
         </div>
     </div>
