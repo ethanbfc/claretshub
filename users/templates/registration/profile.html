@@ -3,16 +3,53 @@
 
 {% block title %}Profile{% endblock %}
 
+{% block head %}
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/form_pages.css' %}">
+
+{% endblock %}
+
 {% block content %}
 
-<h2>Profile</h2>
-
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Update</button>
-</form>
-
-</br><a href="{% url 'change-password' %}">Change Password</a>
+<div class="container p-3 m-0 border-0 main-container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="container form-container">
+                {% if user.is_authenticated %}
+                    <h1 class="title">Profile</h1>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            {{ form.username }}
+                            <div class="form-text">150 characters or fewer. Accepted characters: letters, digits and the symbols: @ . + - _</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            {{ form.email }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">First Name</label>
+                            {{ form.first_name }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Last Name</label>
+                            {{ form.last_name }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a class="btn btn-primary" role="button" href="{% url 'change-password' %}">Change Password</a>
+                    </form>
+                {% else %}
+                    <h1 class="title">Invalid Request</h1>
+                    <p>You must ensure that you are currently logged in to be able to view your profile.</p>
+                    <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
+                    <p>If you already have an account, please <a href="{% url 'login' %}">login</a>.</p>
+                    <p>Otherwise, please create a <a href="{% url 'register' %}">new account</a>.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

@@ -3,14 +3,48 @@
 
 {% block title %}Login{% endblock %}
 
+{% block head %}
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/form_pages.css' %}">
+
+{% endblock %}
+
 {% block content %}
 
-<h2>Login</h2>
+<div class="container p-3 m-0 border-0 main-container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="container form-container">
+                {% if not user.is_authenticated %}
+                    <h1 class="title">Login</h1>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            {{ form.username }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            {{ form.password }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                {% else %}
+                    <h1 class="title">Invalid Request</h1>
+                    <p>This form is unavailable since you are already logged in.</p>
+                    <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Login</button>
-</form>
+<script>
+    var element = document.getElementById("id_username");
+    element.classList.add("form-control");
+    var element = document.getElementById("id_password");
+    element.classList.add("form-control");
+</script>
 
 {% endblock %}
