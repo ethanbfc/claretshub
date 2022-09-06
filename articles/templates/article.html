@@ -228,11 +228,11 @@
             <div class="card-body">
                 {% for article in articles_list %}
                     <div class="row">
+                        <h6><a class="article-title" href="{% url 'article-details' article.pk %}">{{ article.title }}</a></h6>
                         <div class="col-3">
                             <a href="{% url 'article-details' article.pk %}"><img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail"></a>
                         </div>
                         <div class="col-9">
-                            <h6><a class="article-title" href="{% url 'article-details' article.pk %}">{{ article.title }}</a></h6>
                             <p>{{ article.snippet }}</p>
                         </div>
                     </div>

@@ -16,7 +16,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="container form-container">
-                {% if user.is_staff %}
+                {% if user.account.administrator == True %}
                     <h1 class="title">Create Match Report</h1>
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
@@ -117,8 +117,8 @@
                 {% else %}
                     <h1 class="title">Invalid Request</h1>
                     <p>You do not have the correct permissions to create a match report.</p>
-                    <p>If you think this is a mistake, please <a href="#">contact us</a> to get in touch with an administrator.</p>
-                    <p>If you would like to write for us, then please check out our <a href="#">openings</a>.</p>
+                    <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
+                    <p>If you would like to write for us, then please check out our <a href="{% url 'jobs' %}">openings</a>.</p>
                 {% endif %}
             </div>
         </div>

@@ -41,10 +41,10 @@
 </div>
 
 <script>
-    var element = document.getElementById("id_username");
-    element.classList.add("form-control");
-    var element = document.getElementById("id_password");
-    element.classList.add("form-control");
+    var form = document.getElementsByTagName('input')
+    for (var field in form){
+            form[field].className += 'form-control'
+    }
 </script>
 
 {% endblock %}

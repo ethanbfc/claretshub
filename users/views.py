@@ -26,11 +26,11 @@ class CustomPasswordChangeView(PasswordChangeView):
     template_name='registration/change_password.html'
     success_url = reverse_lazy('home')
 
+# Manage Staff
+
 class StaffView(ListView):
     model = User
     template_name = 'manage_staff.html'
-
-# Manage Staff
 
 def RemoveAdministratorView(request):
     account = get_object_or_404(Account, user=request.POST.get('user_id'))
