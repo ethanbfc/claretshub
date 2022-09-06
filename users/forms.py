@@ -40,3 +40,10 @@ class PasswordChangeForm(PasswordChangeForm):
     class Meta:
         model = User
         fields = ('old_password', 'new_password1', 'new_password2')
+
+# Manage Staff
+
+class UsernameForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ["username"]
