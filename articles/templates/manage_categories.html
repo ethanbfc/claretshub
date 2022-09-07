@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Manage Categories{% endblock %}
+
+{% block head %}
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/form_pages.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container p-3 m-0 border-0 main-container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="container form-container">
+                {% if user.account.administrator == True %}
+                    <h1 class="title">Manage Categories</h1>
+                    <p class="text-muted">Categories are used to sort articles to make it easier for users to navigate through the site.</p>
+                    <p class="text-muted">PLEASE NOTE: Deleting a category will delete all articles that have been assigned that category.</p>
+
+                    <!-- Alerts -->
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-warning alert-dismissible fade show" id="alertMessage">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" id="alertCloseBtn"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <hr>
+                    <h3 class="title">Current Categories</h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Category</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for category in object_list %}
+                                    <tr>
+                                        <th scope="row">{{ category.title }}</th>
+                                        <td scope="row">
+                                            <form action="{% url 'remove-category' %}" method="POST">
+                                                {% csrf_token %}
+                                                <button class="btn btn-danger" type="submit" name="category_id" value="{{ category.pk }}">Remove</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <hr>
+                    <h3 class="title">Create New Category</h3>
+                    <form action="{% url 'create-category' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label">Title</label>
+                            <input type="text" class="form-control" name="title">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </form>
+
+                {% else %}
+                    <h1 class="title">Invalid Request</h1>
+                    <p>You do not have the correct permissions to manage categories.</p>
+                    <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

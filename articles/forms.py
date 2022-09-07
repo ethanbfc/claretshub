@@ -67,11 +67,7 @@ class CreatePlayerProfileForm(forms.ModelForm):
 class CreateCategoryForm(forms.ModelForm):
     class Meta:
         model = Category
-        fields = ('title',)
-
-        widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'})
-        }
+        fields = ["title"]
 
 # Edit Forms
 

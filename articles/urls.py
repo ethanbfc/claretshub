@@ -10,5 +10,7 @@ urlpatterns = [
     path('match-report/edit/<int:pk>', EditMatchReportView.as_view(), name="edit-match-report"),
     path('player-profile/edit/<int:pk>', EditPlayerProfileView.as_view(), name="edit-player-profile"),
     path('article/delete/<int:pk>', DeleteArticleView.as_view(), name="delete-article"),
-    path('create-category', CreateCategoryView.as_view(), name="create-category")
+    path('categories', CategoryView.as_view(), name="categories"),
+    path('remove-category/', RemoveCategoryView, name="remove-category"),
+    path('create-category', CreateCategoryView, name="create-category")
 ]

@@ -1,5 +1,8 @@
-from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
+from django.views.generic import DetailView, CreateView, UpdateView, DeleteView, ListView
+from django.contrib import messages
+from django.urls import reverse_lazy, reverse
+from django.http import HttpResponseRedirect
 from .models import Article, MatchReport, PlayerProfile, Category
 from .forms import CreateArticleForm, CreateMatchReportForm, CreatePlayerProfileForm, CreateCategoryForm, EditArticleForm, EditMatchReportForm, EditPlayerProfileForm
 
@@ -33,11 +36,6 @@ class CreatePlayerProfileView(CreateView):
     form_class = CreatePlayerProfileForm
     template_name = 'create_player_profile.html'
 
-class CreateCategoryView(CreateView):
-    model = Category
-    form_class = CreateCategoryForm
-    template_name = 'create_category.html'
-
 # Edit Views
 
 class EditArticleView(UpdateView):
@@ -61,3 +59,22 @@ class DeleteArticleView(DeleteView):
     model = Article
     template_name = 'delete_article.html'
     success_url = reverse_lazy('home')
+
+# Category
+
+class CategoryView(ListView):
+    model = Category
+    template_name = 'manage_categories.html'
+
+def RemoveCategoryView(request):
+    category = get_object_or_404(Category, id=request.POST.get('category_id'))
+    Category.objects.filter(id = category.id).delete()
+    messages.success(request, (f"Category deleted."))
+    return HttpResponseRedirect(reverse('categories'))
+
+def CreateCategoryView(request):
+    if (request.method == "POST"):
+        form = CreateCategoryForm(request.POST or None)
+        form.save()
+        messages.success(request, (f"Category created."))
+    return HttpResponseRedirect(reverse('categories'))
