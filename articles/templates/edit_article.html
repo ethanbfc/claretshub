@@ -37,6 +37,17 @@
                         <div class="mb-3">
                             <label class="form-label">Snippet</label>
                             {{ form.snippet }}
+                            <div class="form-text">
+                                This snippet is used on desktop devices on the homepage. Maximum of 340 characters, please aim for the length to be as close to this as possible.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Short Snippet</label>
+                            {{ form.short_snippet }}
+                            <div class="form-text">
+                                This snippet is used on mobile devices on the homepage and the latest articles section on article pages. Maximum of 115 characters, please aim 
+                                for the length to be as close to this as possible.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Body</label>

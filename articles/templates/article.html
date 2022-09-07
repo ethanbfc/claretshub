@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-9">
                                 <h6><a class="article-title" href="{% url 'article-details' article.pk %}">{{ article.title }}</a></h6>
-                                <p>{{ article.snippet }}</p>
+                                <p>{{ article.short_snippet }}</p>
                             </div>
                         </div>
                         {% if not forloop.last%}
@@ -233,7 +233,7 @@
                             <a href="{% url 'article-details' article.pk %}"><img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail"></a>
                         </div>
                         <div class="col-9">
-                            <p>{{ article.snippet }}</p>
+                            <p>{{ article.short_snippet }}</p>
                         </div>
                     </div>
                     {% if not forloop.last%}
