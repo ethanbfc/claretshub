@@ -1,19 +1,30 @@
-.navbar {
+body {
+    background: rgb(245, 245, 245);
+}
+
+.top-navbar {
     background-color: #6c1d45;
+    font-family: 'Oswald';
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.social-media-icons {
-    display: inline;
+.main-navbar {
+    box-shadow: 1px 1px 8px grey;
+    font-family: 'Oswald';
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.footer {
-    background-color: #6c1d45;
+.nav-item {
+    display: inherit;
 }
 
-.footer-link {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+.nav-link-text {
+    color: #6c1d45 !important;
 }
 
 img {
@@ -21,18 +32,43 @@ img {
     height: auto;
 }
 
-@media (max-width: 990px) {
-    .navbar-middle {
-        display: none;
-    }
-
-    .social-media-icons {
-        padding-right: 8px !important;
-    }
+.user-emoji {
+    padding-right: 0rem !important;
+    color: transparent !important;  
+    text-shadow: 0 0 0 rgba(255, 255, 255, 0.55);
 }
 
-@media (min-width: 1000px) {
-    .navbar-end {
-        display: none;
-    }
+.social-media-icon {
+    display: inline;
+    padding-right: 8px !important;
+    text-decoration: none;
+    color: white;
+}
+
+.footer {
+    background-color: #6c1d45;
+    font-family: 'Oswald';
+}
+
+.footer-icons {
+    display: inherit;
+    padding-bottom: 0.5rem;
+}
+
+.footer-heading {
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.footer-link {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+
+.footer-link:hover{
+    color: grey;
 }
