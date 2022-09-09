@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/news.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+<!-- Main Container -->
+<div class="container p-3 m-0 border-0 main-container">
+    
+    <div class="row g-0">
+        <p class="news-heading p-2">News</p>
+    </div>
+
+    <!-- Articles -->
+    {% for article in object_list %}
+        {% if forloop.counter|divisibleby:2 %}
+            <div class="col-sm-6 mb-3 col-12">
+                    <div class="card h-100">
+                        <a href="{% url 'article-details' article.pk %}"><img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail"></a>
+                        <div class="card-body">
+                            <a class="btn btn-primary category-button" role="button" href="">{{ article.category }}</a>
+                            <h3><a class="card-title article-title" href="{% url 'article-details' article.pk %}">{{ article.title }}</a></h3>
+                            <p>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                </svg>
+                                <small class="article-details">{{ article.author }}</small>&nbsp
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                </svg>
+                                <small class="article-details">{{ article.date | date:'jS F o' }}</small>
+                            </p>
+                            <p class="card-text article-snippet">{{ article.snippet }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="row">
+                <div class="col-sm-6 mb-3 col-12">
+                    <div class="card h-100">
+                        <a href="{% url 'article-details' article.pk %}"><img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail"></a>
+                        <div class="card-body">
+                            <a class="btn btn-primary category-button" role="button" href="">{{ article.category }}</a>
+                            <h3><a class="card-title article-title" href="{% url 'article-details' article.pk %}">{{ article.title }}</a></h3>
+                            <p>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                </svg>
+                                <small class="article-details">{{ article.author }}</small>&nbsp
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                </svg>
+                                <small class="article-details">{{ article.date | date:'jS F o' }}</small>
+                            </p>
+                            <p class="card-text article-snippet">{{ article.snippet }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% if forloop.last %}
+            </div>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    <!-- Pagination -->
+    <div class="row mb-1">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a class="btn btn-primary pagination-button" role="button" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+            {% else %}
+                <a class="btn btn-primary pagination-button pagination-button-disabled" role="button">&laquo;</a>
+            {% endif %}
+    
+            <span class="current pagination-text">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    
+            {% if page_obj.has_next %}
+                <a class="btn btn-primary pagination-button" role="button" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+            {% else %}
+                <a class="btn btn-primary pagination-button pagination-button-disabled" role="button">&raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+</div>
+
+{% endblock %}

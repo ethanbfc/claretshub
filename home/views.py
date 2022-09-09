@@ -12,6 +12,12 @@ class HomeView(ListView):
     ordering = ['-date']
     paginate_by = 10
 
+class NewsView(ListView):
+    model = Article
+    template_name = 'news.html'
+    ordering = ['-date']
+    paginate_by = 10
+
 def ContactView(request):
     if (request.method == "GET"):
         form = ContactForm()

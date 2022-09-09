@@ -28,7 +28,7 @@
                 <!-- Left Content - Buttons -->
                 <ul class="navbar-nav me-auto">
                     {% if user.is_authenticated %}
-                        <li class="nav-item">
+                        <li class="nav-item mobile-hide">
                             <a class="nav-link user-emoji">👤</a>
                             <a class="nav-link">{{ user.username }}</a>
                         </li>
@@ -85,32 +85,35 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Content-->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link nav-link-text" href="{% url 'home' %}">News</a>
+                        <a class="nav-link main-nav-link-text" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-link-text" href="#">Players</a>
+                        <a class="nav-link main-nav-link-text" href="{% url 'news' %}">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link main-nav-link-text" href="#">Players</a>
                     </li>
                 </ul>
 
                 <!-- Right Content -->
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ms-auto mb-lg-0">
                     {% if user.is_authenticated %}
                         {% if user.account.administrator == True %}
                             <li class="nav-item dropdown">
-                                <a class="nav-link nav-link-text dropdown-toggle" id="createDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">New Content</a>
+                                <a class="nav-link main-nav-link-text dropdown-toggle" id="createDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">New Content</a>
                                 <div class="dropdown-menu" aria-labelledby="createDropdown">
-                                    <a class="dropdown-item nav-link-text" href="{% url 'create-article' %}">Article</a>
-                                    <a class="dropdown-item nav-link-text" href="{% url 'create-match-report' %}">Match Report</a>
-                                    <a class="dropdown-item nav-link-text" href="{% url 'create-player-profile' %}">Player Profile</a>
-                                    <a class="dropdown-item nav-link-text" href="{% url 'categories' %}">Manage Categories</a>
+                                    <a class="dropdown-item main-nav-link-text" href="{% url 'create-article' %}">Article</a>
+                                    <a class="dropdown-item main-nav-link-text" href="{% url 'create-match-report' %}">Match Report</a>
+                                    <a class="dropdown-item main-nav-link-text" href="{% url 'create-player-profile' %}">Player Profile</a>
+                                    <a class="dropdown-item main-nav-link-text" href="{% url 'categories' %}">Manage Categories</a>
                                 </div>
                             </li>
                         {% endif %}
                         {% if user.is_staff %}
                             <li class="nav-item">
-                                <a class="nav-link nav-link-text" href="{% url 'staff' %}">Manage Staff</a>
+                                <a class="nav-link main-nav-link-text" href="{% url 'staff' %}">Manage Staff</a>
                             </li>
                         {% endif %}
                     {% endif %}

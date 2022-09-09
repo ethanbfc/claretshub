@@ -23,13 +23,12 @@ body {
     display: inherit;
 }
 
-.nav-link-text {
+.main-nav-link-text {
     color: #6c1d45 !important;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
+.main-nav-link-text:hover {
+    color: #6c1d45bd !important;
 }
 
 .user-emoji {
@@ -71,4 +70,11 @@ img {
 
 .footer-link:hover{
     color: grey;
+}
+
+/* Mobile specific properties */
+@media (max-width: 768px) {
+    .mobile-hide {
+        display: none;
+    }
 }
