@@ -73,17 +73,15 @@
     <div class="row mb-1">
         <span class="step-links">
             {% if page_obj.has_previous %}
-                <a class="btn btn-primary pagination-button" role="button" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+                <a class="btn btn-primary pagination-button" role="button" href="?page={{ page_obj.previous_page_number }}">&laquo; PREV</a>
             {% else %}
-                <a class="btn btn-primary pagination-button pagination-button-disabled" role="button">&laquo;</a>
+                <a class="btn btn-primary pagination-button pagination-button-disabled" role="button">&laquo; PREV</a>
             {% endif %}
     
-            <span class="current pagination-text">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
-    
             {% if page_obj.has_next %}
-                <a class="btn btn-primary pagination-button" role="button" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+                <a class="btn btn-primary pagination-button" role="button" href="?page={{ page_obj.next_page_number }}">NEXT &raquo;</a>
             {% else %}
-                <a class="btn btn-primary pagination-button pagination-button-disabled" role="button">&raquo;</a>
+                <a class="btn btn-primary pagination-button pagination-button-disabled" role="button">NEXT &raquo;</a>
             {% endif %}
         </span>
     </div>

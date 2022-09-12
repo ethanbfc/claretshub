@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-sm-6 col-12 p-3">
                     <div class="row">
-                        <a class="btn btn-primary category-button" role="button" style="margin-left: 10px;" href="">{{ article.category }}</a>
+                        <a class="btn category-button" role="button" style="margin-left: 10px;" href="">{{ article.category }}</a>
                     </div>
                     <div class="row mt-2">
                         <h3><a class="article-title" href="{% url 'article-details' article.pk %}">{{ article.title }}</a></h3>
@@ -60,7 +60,7 @@
                             <div class="card">
                                 <a href="{% url 'article-details' article.pk %}"><img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail"></a>
                                 <div class="card-body">
-                                    <a class="btn btn-primary category-button" role="button" href="">{{ article.category }}</a>
+                                    <a class="btn category-button" role="button" href="">{{ article.category }}</a>
                                     <h3><a class="card-title article-title" href="{% url 'article-details' article.pk %}">{{ article.title }}</a></h3>
                                     <p>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
@@ -84,7 +84,7 @@
     {% endfor %}
 
     <div class="row my-3 justify-content-center">
-        <a class="btn btn-primary view-all-news-button" role="button" href="{% url 'news' %}">View All News</a>
+        <a class="btn view-all-news-button" role="button" href="{% url 'news' %}">View All News</a>
     </div>
 </div>
 
