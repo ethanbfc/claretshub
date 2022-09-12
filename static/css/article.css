@@ -1,40 +1,127 @@
 .main-container {
     max-width: 100%;
-    background-color: #f8f8f8;
 }
 
-.article-container-shadow {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
-    background-color: white;
+.title-bar {
+    background-color: rgb(40, 40, 40);
+    color: white;
 }
 
-.article-container {
-    padding-top: 10px;
-    padding-bottom: 10px;
+.category-button {
+    width: fit-content;
+    background-color: #6c1d45;
+    border-color: #6c1d45;
+    border-radius: 2rem;
+    font-family: 'Oswald';
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-left: 10px;
+}
+
+.category-button:hover {
+    background-color: #6c1d45bd;
+    border-color: #6c1d45bd;
 }
 
 .article-title {
     text-decoration: none;
     text-transform: uppercase;
     font-weight: bold;
+}
+
+.article-details {
+    vertical-align: middle;
+    color: #6c757d !important;
+}
+
+.article-container {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+
+.admin-command-button {
+    width: 100%;
+    background-color: #6c1d45;
+    border-color: #6c1d45;
+    color: white;
+    font-family: 'Oswald';
+    text-transform: uppercase;
+}
+
+.admin-command-button:hover {
+    background-color: #6c1d45bd;
+    border-color: #6c1d45bd;
+}
+
+.latest-articles-title {
     color: black;
-    margin-bottom: 0rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Oswald';
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.latest-articles-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Player Profile */
+.player-name {
+    font-family: 'Oswald';
+    color: #6c1d45;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.details-subheading {
+    font-family: 'Oswald';
+    text-transform: uppercase;
+    border-bottom: 2px inset black;
+}
+
+.details-category {
+    font-family: 'Oswald';
+    text-transform: uppercase;
+}
+
+.details-text {
+    vertical-align: text-bottom;
 }
 
 .player-stats-title {
+    font-family: 'Oswald';
     text-transform: uppercase;
     font-weight: bold;
     margin-bottom: 1rem;
 }
 
-.card-header {
-    background-color: #6c1d45;
-    color: white;
+/* Match Report */
+.scorer-heading {
+    font-family: 'Oswald';
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
 }
 
-.admin-card-body {
-    padding: 8px 7px;
+.scorer-subtext {
+    color: #6c757d;
+    font-family: 'Oswald';
+}
+
+.team-heading {
+    font-family: 'Oswald';
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.25rem;
 }
 
 thead {
@@ -50,35 +137,15 @@ th {
     text-align: center;
 }
 
-/* Mobile & Tablet specific properties */
+/* Media */
 @media (max-width: 992px) {
-    .mobile-hide {
+    .lg-hide {
         display: none;
-    }
-
-    .mobile-col {
-        margin-top: 1rem;
-        margin-left: 0rem;
-        margin-right: 0rem
-    }
-
-    .article-col {
-        width: 100%;
-        padding-top: -1;
-    }
-
-    a {
-        margin-bottom: 5px;
-    }
-
-    .row {
-        margin-bottom: -0.5rem;
     }
 }
 
-/* Desktop & Laptop specific properties */
-@media (min-width: 1000px) {
-    .desktop-hide {
-        display: none;
+@media (min-width: 992px) {
+    .latest-articles-card {
+        margin-right: -1rem;
     }
 }

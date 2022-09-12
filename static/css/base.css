@@ -31,6 +31,10 @@ body {
     color: #6c1d45bd !important;
 }
 
+.dropdown-item:active {
+    background-color: #d5d5d5;
+}
+
 .user-emoji {
     padding-right: 0rem !important;
     color: transparent !important;  
@@ -74,7 +78,7 @@ body {
 
 /* Mobile specific properties */
 @media (max-width: 768px) {
-    .mobile-hide {
+    .md-hide {
         display: none;
     }
 }

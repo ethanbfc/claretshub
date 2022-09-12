@@ -12,238 +12,213 @@
 
 {% block content %}
 
+<!-- Main Container -->
 <div class="container p-3 m-0 border-0 main-container">
-    <div class="row">
-        <!-- Desktop Column - Left -->
-        <div class="col-3 mobile-hide">
-
-            <!-- Admin Commands -->
-            {% if user.id == article.author.id %}
-                <div class="card">
-                    <div class="card-header">ADMIN</div>
-                    <div class="card-body admin-card-body">
-                        <a class="btn btn-primary" role="button" href="{% url 'edit-article' article.pk %}">Edit Article Body</a>
-                        {% if article.category.title == "Match Report" %}
-                            <a class="btn btn-primary" role="button" href="{% url 'edit-match-report' article.match_report.id %}">Edit Match Report</a>
-                        {% endif %}
-                        {% if article.category.title == "Player Profile" %}
-                            <a class="btn btn-primary" role="button" href="{% url 'edit-player-profile' article.player_profile.id %}">Edit Player Profile</a>
-                        {% endif %}
-                        <a class="btn btn-primary" role="button" href="{% url 'delete-article' article.pk %}">Delete Article</a>
-                    </div>
-                </div>
-                </br>
-            {% endif %}
-
-            <!-- Latest Articles -->
-            <div class="card">
-                <div class="card-header">LATEST ARTICLES</div>
-                <div class="card-body">
-                    {% for article in articles_list %}
-                        <div class="row">
-                            <div class="col-3">
-                                <a href="{% url 'article-details' article.pk %}"><img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail"></a>
-                            </div>
-                            <div class="col-9">
-                                <h6><a class="article-title" href="{% url 'article-details' article.pk %}">{{ article.title }}</a></h6>
-                                <p>{{ article.short_snippet }}</p>
-                            </div>
-                        </div>
-                        {% if not forloop.last%}
-                            <hr>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
+    <!-- Thumbnail -->
+    <div class="row g-0 justify-content-center">
+        <div class="col-lg-8 g-0 col-12">
+            <img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail">
         </div>
+    </div>
 
-        <!-- Article -->
-        <div class="col-6 article-col">
-            <div class="article-container-shadow">
-                {% if article.banner.url is not None %}
-                    <img src="{{ article.banner.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail">
-                {% endif %}
-                <div class="container article-container">
-                    <!-- Title and Subtext -->
-                    <h1 class="article-title">{{ article.title }}</h1>
-
+    <!-- Title Bar -->
+    <div class="row mt-2 g-0 justify-content-center">
+        <div class="col-lg-8 col-12 p-3 title-bar">
+            <div class="row">
+                <a class="btn btn-primary category-button" role="button" href="">{{ article.category }}</a>
+            </div>
+            <div class="row mt-2">
+                <h1 class="article-title">{{ article.title }}</h1>
+            </div>
+            <hr>
+            <div class="row">
+                <p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                     </svg>
-                    <small class="text-muted">{{ article.author }}</small>
+                    <small class="article-details">{{ article.author }}</small>&nbsp
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
                         <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
                     </svg>
-                    <small class="text-muted">{{ article.date | date:'jS F o' }}</small>
-
-                    <!-- Match Report -->
+                    <small class="article-details">{{ article.date | date:'jS F o' }}</small>
                     {% if article.category.title == "Match Report" %}
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                             <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
                         </svg>
-                        <small class="text-muted">{{ article.match_report.stadium }}</small>
+                        <small class="article-details">{{ article.match_report.stadium }}</small>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
 
-                        <hr>
-                        {% if article.match_report.stadium == "Turf Moor" %}
-                            <h4 class="article-title">Burnley - {{ article.match_report.burnley_goals }}</h4>
-                            <p><small class="text-muted">{{ article.match_report.burnley_scorers }}</small></p>
-                            <h4 class="article-title">{{ article.match_report.opponent }} - {{ article.match_report.opponent_goals }}</h4>
-                            <p><small class="text-muted">{{ article.match_report.opponent_scorers }}</small></p>
-                        {% else %}
-                            <h4 class="article-title">{{ article.match_report.opponent }} - {{ article.match_report.opponent_goals }}</h4>
-                            <p><small class="text-muted">{{ article.match_report.opponent_scorers }}</small></p>
-                            <h4 class="article-title">Burnley - {{ article.match_report.burnley_goals }}</h4>
-                            <p><small class="text-muted">{{ article.match_report.burnley_scorers }}</small></p>
-                        {% endif %}
+    <!-- Article Body -->
+    <div class="row mt-2 g-0">
 
-                        <hr>
-                        <p>{{ article.body | safe }}</p>
+        <div class="col-lg-2 lg-hide">
+        </div>
 
-                        <hr>
-                        <div class="row">
-                            <div class="col">
-                                <b>BURNLEY</b> {{ article.match_report.burnley_team | safe }}
-                            </div>
-                            <div class="col">
-                                <b>{{ article.match_report.opponent | upper }}</b> {{ article.match_report.opponent_team | safe }}
-                            </div>
-                        </div>
+        <!-- Article Body Column -->
+        <div class="col-lg-6 col-12 p-3 article-container">
+            <div class="row">
 
-                        <hr>
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th scope="col">Statistics</th>
-                                <th scope="col">Burnley</th>
-                                <th scope="col">{{ article.match_report.opponent }}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">Possession</th>
-                                <td>{{ article.match_report.possession_burnley }}%</td>
-                                <td>{{ article.match_report.possession_opponent }}%</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Shots</th>
-                                <td>{{ article.match_report.shots_burnley }}</td>
-                                <td>{{ article.match_report.shots_opponent }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Shots on Target</th>
-                                <td>{{ article.match_report.shots_on_target_burnley }}</td>
-                                <td>{{ article.match_report.shots_on_target_opponent }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Corners</th>
-                                <td>{{ article.match_report.corners_burnley }}</td>
-                                <td>{{ article.match_report.corners_opponent }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Fouls</th>
-                                <td>{{ article.match_report.fouls_burnley }}</td>
-                                <td>{{ article.match_report.fouls_opponent }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-
-                        <hr>
-                        <p><b>Officials</b>: {{ article.match_report.officials }}</p>
-
-                    <!-- Player Profile -->
-                    {% elif article.category.title == "Player Profile" %}
-
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail">
-                            </div>
-                            <div class="col">
-                                <p>
-                                    <b>Name</b>: {{ article.player_profile.name }}
-                                    <br><b>Date of Birth</b>: {{ article.player_profile.dob | date:'dS F o' }} (age {{ article.player_profile.dob | timesince | slice:":2" }})
-                                    <br><b>Position</b>: {{ article.player_profile.position }}
-                                    <br><b>Nationality</b>: {{ article.player_profile.nationality }}
-                                    <br><b>International Caps (Goals)</b>: {{ article.player_profile.international_caps_goals }}
-                                </p>
-                                <p><b>Current Job</b>: {{ article.player_profile.current_job }}</p>
-                            </div>
-                        </div>
-
-                        <hr>
-                        <p>{{ article.body | safe }}</p>
-
-                        <hr>
-                        <h6 class="player-stats-title">Playing Statistics</h6>
-                        <div class="table-responsive">
-                            {{ article.player_profile.player_stats | safe }}
-                        </div>
-
-                        {% if article.player_profile.manager_stats == "null" %}
-                            <hr>
-                            <h6 class="player-stats-title">Manager Statistics</h6>
-                            <div class="table-responsive">
-                                {{ article.player_profile.manager_stats | safe }}
-                            </div>
-                        {% endif %}
-
-                    <!-- General News -->
+                {% if article.category.title == "Match Report" %}
+                <!-- Match Report -->
+                    {% if article.match_report.stadium == "Turf Moor" %}
+                        <h4 class="scorer-heading">Burnley - {{ article.match_report.burnley_goals }}</h4>
+                        <p><small class="scorer-subtext">{{ article.match_report.burnley_scorers }}</small></p>
+                        <h4 class="scorer-heading">{{ article.match_report.opponent }} - {{ article.match_report.opponent_goals }}</h4>
+                        <p><small class="scorer-subtext">{{ article.match_report.opponent_scorers }}</small></p>
                     {% else %}
-                        <hr>
-                        <p>{{ article.body | safe }}</p>
+                        <h4 class="scorer-heading">{{ article.match_report.opponent }} - {{ article.match_report.opponent_goals }}</h4>
+                        <p><small class="scorer-subtext">{{ article.match_report.opponent_scorers }}</small></p>
+                        <h4 class="scorer-heading">Burnley - {{ article.match_report.burnley_goals }}</h4>
+                        <p><small class="scorer-subtext">{{ article.match_report.burnley_scorers }}</small></p>
                     {% endif %}
-                </div>
-            </div>
-        </div>
 
-        <!-- Desktop Column - Right -->
-        <div class="col-3 mobile-hide">
-        </div>
-    </div>
+                    <hr>
+                    <div>{{ article.body | safe }}</div>
+                    <p><b>Officials</b>: {{ article.match_report.officials }}</p>
 
-    <!-- Mobile Row - Admin Commands -->
-    <div class="row desktop-hide mobile-col">
-        {% if user.id == article.author.id %}
-            <div class="card px-0">
-                <div class="card-header">ADMIN</div>
-                <div class="card-body admin-card-body">
-                    <a class="btn btn-primary" role="button" href="{% url 'edit-article' article.pk %}">Edit Article Body</a>
-                    {% if article.category.title == "Match Report" %}
-                        <a class="btn btn-primary" role="button" href="{% url 'edit-match-report' article.match_report.id %}">Edit Match Report</a>
-                    {% endif %}
-                    {% if article.category.title == "Player Profile" %}
-                        <a class="btn btn-primary" role="button" href="{% url 'edit-player-profile' article.player_profile.id %}">Edit Player Profile</a>
-                    {% endif %}
-                    <a class="btn btn-primary" role="button" href="{% url 'delete-article' article.pk %}">Delete Article</a>
-                </div>
-            </div>
-            </br>
-        {% endif %}
-    </div>
-
-    <!-- Mobile Row - Latest Articles -->
-    <div class="row desktop-hide mobile-col">
-        <div class="card px-0">
-            <div class="card-header">LATEST ARTICLES</div>
-            <div class="card-body">
-                {% for article in articles_list %}
+                    <hr>
                     <div class="row">
-                        <h6><a class="article-title" href="{% url 'article-details' article.pk %}">{{ article.title }}</a></h6>
-                        <div class="col-3">
-                            <a href="{% url 'article-details' article.pk %}"><img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail"></a>
+                        <div class="col-6">
+                            <h5 class="team-heading">BURNLEY</h5>
+                            {{ article.match_report.burnley_team | safe }}
                         </div>
-                        <div class="col-9">
-                            <p>{{ article.short_snippet }}</p>
+                        <div class="col-6">
+                            <h5 class="team-heading">{{ article.match_report.opponent | upper }}</h5>
+                            {{ article.match_report.opponent_team | safe }}
                         </div>
                     </div>
-                    {% if not forloop.last%}
+
+                    <hr>
+                    <div class="col-12 g-0 px-2">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Statistics</th>
+                                    <th scope="col">Burnley</th>
+                                    <th scope="col">{{ article.match_report.opponent }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Possession</th>
+                                    <td>{{ article.match_report.possession_burnley }}%</td>
+                                    <td>{{ article.match_report.possession_opponent }}%</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Shots</th>
+                                    <td>{{ article.match_report.shots_burnley }}</td>
+                                    <td>{{ article.match_report.shots_opponent }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Shots on Target</th>
+                                    <td>{{ article.match_report.shots_on_target_burnley }}</td>
+                                    <td>{{ article.match_report.shots_on_target_opponent }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Corners</th>
+                                    <td>{{ article.match_report.corners_burnley }}</td>
+                                    <td>{{ article.match_report.corners_opponent }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Fouls</th>
+                                    <td>{{ article.match_report.fouls_burnley }}</td>
+                                    <td>{{ article.match_report.fouls_opponent }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                {% elif article.category.title == "Player Profile" %}
+                <!-- Player Profile -->
+                    <h1 class="player-name">{{ article.player_profile.name }}</h1>
+                    <div class="col-md-6 col-12">
+                        <h5 class="details-subheading">Personal Details</h5>
+                        <p>
+                            <b class="details-category">Age</b>: <small class="details-text">{{ article.player_profile.dob | timesince | slice:":2" }}</small>
+                            <br><b class="details-category">Date of Birth</b>: <small class="details-text">{{ article.player_profile.dob | date:'dS F o' }}</small>
+                            <br><b class="details-category">Nationality</b>: <small class="details-text">{{ article.player_profile.nationality }}</small>
+                        </p>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <h5 class="details-subheading">Career</h5>
+                        <b class="details-category">Position</b>: <small class="details-text">{{ article.player_profile.position }}</small>
+                        <br><b class="details-category">International Caps (Goals)</b>: <small class="details-text">{{ article.player_profile.international_caps_goals }}</small>
+                        <br><b class="details-category">Current Job</b>: <small class="details-text">{{ article.player_profile.current_job }}</small>
+                    </div>
+
+                    <hr>
+                    <div>{{ article.body | safe }}</div>
+                    <hr>
+
+                    <h5 class="player-stats-title">Playing Statistics</h5>
+                    <div class="table-responsive">
+                        {{ article.player_profile.player_stats | safe }}
+                    </div>
+
+                    {% if article.player_profile.manager_stats != "<p>null</p>" %}
                         <hr>
+                        <h5 class="player-stats-title">Manager Statistics</h5>
+                        <div class="table-responsive">
+                            {{ article.player_profile.manager_stats | safe }}
+                        </div>
                     {% endif %}
-                {% endfor %}
+
+                {% else %}
+                <!-- General News -->
+                    <div>{{ article.body | safe }}</div>
+
+                {% endif %}
             </div>
         </div>
-    </div>
 
+        <!-- Right Column -->
+        <div class="col-lg-2 px-lg-3 col-12">
+
+            <!-- Admin Commands -->
+            {% if user.id == article.author.id %}
+                <div class="row mb-3">
+                    <div class="d-grid px-lg-1 mx-lg-2 gap-2">
+                        <a class="btn admin-command-button mt-3 mt-lg-0" type="button" href="{% url 'edit-article' article.pk %}">Edit Article Body</a>
+                        {% if article.category.title == "Match Report" %}
+                            <a class="btn admin-command-button" role="button" href="{% url 'edit-match-report' article.match_report.id %}">Edit Match Report</a>
+                        {% endif %}
+                        {% if article.category.title == "Player Profile" %}
+                            <a class="btn admin-command-button" role="button" href="{% url 'edit-player-profile' article.player_profile.id %}">Edit Player Profile</a>
+                        {% endif %}
+                        <a class="btn admin-command-button" role="button" href="{% url 'delete-article' article.pk %}">Delete Article</a>
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Latest Articles -->
+            <div class="row">
+                {% for article in articles_list %}
+                    {% if forloop.last %}
+                        <div class="col-12">
+                    {% elif forloop.first and user.id != article.author.id %}
+                        <div class="col-12 mb-3 mt-lg-0 mt-3">
+                    {% else %}
+                        <div class="col-12 mb-3">
+                    {% endif %}
+                            <div class="card latest-articles-card">
+                                <a href="{% url 'article-details' article.pk %}"><img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail"></a>
+                                <div class="card-body">
+                                    <a class="card-title latest-articles-title" href="{% url 'article-details' article.pk %}">{{ article.title }}</a>
+                                </div>
+                            </div>
+                        </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <div class="col-lg-2 lg-hide">
+        </div>
+    </div>
 </div>
 
 {% endblock %}
