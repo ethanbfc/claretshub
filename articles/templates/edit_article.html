@@ -13,55 +13,55 @@
 {% block content %}
 
 <div class="container p-3 m-0 border-0 main-container">
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <div class="container form-container">
-                {% if user.account.administrator == True and user.id == article.author.id %}
-                    <h1 class="title">Edit Article</h1>
-                    <form method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ form.media }}
-                        <div class="mb-3">
-                            <label class="form-label">Title</label>
-                            {{ form.title }}
+    <div class="row g-0 justify-content-center">
+        <div class="col-lg-6 col-12 p-3 form-container">
+            {% if user.account.administrator == True and user.id == article.author.id %}
+                <h1 class="title">Edit Article</h1>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.media }}
+                    <div class="mb-3">
+                        <label class="form-label">Title</label>
+                        {{ form.title }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Thumbnail</label>
+                        {{ form.thumbnail }}
+                        <div class="form-text">Recommended size: 1920x1080</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Banner</label>
+                        {{ form.banner }}
+                        <div class="form-text">Player profiles do not require a banner</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Snippet</label>
+                        {{ form.snippet }}
+                        <div class="form-text">
+                            This snippet is used on desktop devices on the homepage. Maximum of 340 characters, please aim for the length to be as close to this as possible.
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Thumbnail</label>
-                            {{ form.thumbnail }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Short Snippet</label>
+                        {{ form.short_snippet }}
+                        <div class="form-text">
+                            This snippet is used on mobile devices on the homepage and the latest articles section on article pages. Maximum of 115 characters, please aim 
+                            for the length to be as close to this as possible.
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Banner</label>
-                            {{ form.banner }}
-                            <div class="form-text">Player profiles do not require a banner</div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Snippet</label>
-                            {{ form.snippet }}
-                            <div class="form-text">
-                                This snippet is used on desktop devices on the homepage. Maximum of 340 characters, please aim for the length to be as close to this as possible.
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Short Snippet</label>
-                            {{ form.short_snippet }}
-                            <div class="form-text">
-                                This snippet is used on mobile devices on the homepage and the latest articles section on article pages. Maximum of 115 characters, please aim 
-                                for the length to be as close to this as possible.
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Body</label>
-                            {{ form.body }}
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                {% else %}
-                    <h1 class="title">Invalid Request</h1>
-                    <p>You do not have the correct permissions to edit an article.</p>
-                    <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
-                    <p>If you would like to write for us, then please check out our <a href="{% url 'jobs' %}">openings</a>.</p>
-                {% endif %}
-            </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Body</label>
+                        {{ form.body }}
+                    </div>
+                    <button type="submit" class="btn form-button">Submit</button>
+                </form>
+            {% else %}
+                <h1 class="title">Error - Invalid Request</h1>
+                <p>You do not have the correct permissions to edit an article.</p>
+                <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
+                <p>If you would like to write for us, then please check out our <a href="{% url 'jobs' %}">openings</a>.</p>
+                <a class="btn home-button" role="button" href="{% url 'home' %}">Return to Home</a>
+            {% endif %}
         </div>
     </div>
 </div>

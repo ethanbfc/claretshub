@@ -13,23 +13,22 @@
 {% block content %}
 
 <div class="container p-3 m-0 border-0 main-container">
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <div class="container form-container">
-                {% if user.account.administrator == True and user.id == article.author.id %}
-                    <h1 class="title">Delete Article</h1>
-                    <form method="POST">
-                        {% csrf_token %}
-                        <p>Are you sure you want to delete {{ article.title }}</p>
-                        <button type="submit" class="btn btn-primary">Delete</button>
-                    </form>
-                {% else %}
-                    <h1 class="title">Invalid Request</h1>
-                    <p>You do not have the correct permissions to delete this article.</p>
-                    <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
-                    <p>If you would like to write for us, then please check out our <a href="{% url 'jobs' %}">openings</a>.</p>
-                {% endif %}
-            </div>
+    <div class="row g-0 justify-content-center">
+        <div class="col-lg-6 col-12 p-3 form-container">
+            {% if user.account.administrator == True and user.id == article.author.id %}
+                <h1 class="title">Delete Article</h1>
+                <form method="POST">
+                    {% csrf_token %}
+                    <p>Are you sure you want to delete {{ article.title }}</p>
+                    <button type="submit" class="btn form-button">Delete</button>
+                </form>
+            {% else %}
+                <h1 class="title">Error - Invalid Request</h1>
+                <p>You do not have the correct permissions to delete this article.</p>
+                <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
+                <p>If you would like to write for us, then please check out our <a href="{% url 'jobs' %}">openings</a>.</p>
+                <a class="btn home-button" role="button" href="{% url 'home' %}">Return to Home</a>
+            {% endif %}
         </div>
     </div>
 </div>
