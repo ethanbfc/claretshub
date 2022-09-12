@@ -13,29 +13,28 @@
 {% block content %}
 
 <div class="container p-3 m-0 border-0 main-container">
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <div class="container form-container">
-                {% if not user.is_authenticated %}
-                    <h1 class="title">Login</h1>
-                    <form method="POST">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label class="form-label">Username</label>
-                            {{ form.username }}
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Password</label>
-                            {{ form.password }}
-                        </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </form>
-                {% else %}
-                    <h1 class="title">Invalid Request</h1>
-                    <p>This form is unavailable since you are already logged in.</p>
-                    <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
-                {% endif %}
-            </div>
+    <div class="row g-0 justify-content-center">
+        <div class="col-lg-6 col-12 p-3 form-container">
+            {% if not user.is_authenticated %}
+                <h1 class="title">Login</h1>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        {{ form.username }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        {{ form.password }}
+                    </div>
+                    <button type="submit" class="btn form-button">Login</button>
+                </form>
+            {% else %}
+                <h1 class="title">Error - Invalid Request</h1>
+                <p>This form is unavailable since you are already logged in.</p>
+                <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
+                <a class="btn home-button" role="button" href="{% url 'home' %}">Return to Home</a>
+            {% endif %}
         </div>
     </div>
 </div>

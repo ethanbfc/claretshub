@@ -12,8 +12,46 @@
 }
 
 .title {
+    font-family: 'Oswald';
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.form-label {
+    font-family: 'Oswald'; 
+}
+
+.form-button {
+    width: fit-content;
+    color: white;
+    background-color: #6c1d45;
+    border-color: #6c1d45;
+    font-family: 'Oswald';
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.form-button:hover {
+    background-color: #6c1d45bd;
+    border-color: #6c1d45bd;
+}
+
+.home-button {
+    width: fit-content;
+    color: white;
+    background-color: #6c1d45;
+    border-color: #6c1d45;
+    font-family: 'Oswald';
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.home-button:hover {
+    background-color: #6c1d45bd;
+    border-color: #6c1d45bd;
 }
 
 .django-ckeditor-widget {
