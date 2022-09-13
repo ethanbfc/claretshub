@@ -14,38 +14,61 @@
 
 <div class="container p-3 m-0 border-0 main-container">
     <div class="row g-0 justify-content-center">
-        <div class="col-lg-6 col-12 p-3 form-container">
+        <div class="col-lg-4 col-12 p-3">
             {% if user.is_authenticated %}
-                <h1 class="title">Profile</h1>
-                <form method="POST">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label class="form-label">Username</label>
-                        {{ form.username }}
-                        <div class="form-text">150 characters or fewer. Accepted characters: letters, digits and the symbols: @ . + - _</div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        {{ form.email }}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">First Name</label>
-                        {{ form.first_name }}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Last Name</label>
-                        {{ form.last_name }}
-                    </div>
-                    <button type="submit" class="btn form-button">Update</button>
-                    <a class="btn form-button" role="button" href="{% url 'change-password' %}">Change Password</a>
-                </form>
+                <div class="row g-0">
+                    <h1 class="title">Profile</h1>
+                    <hr class="title-separator">
+                    <p>This is your Clarets Hub profile. Here you are able to see your details and change them if required.</p>
+                    <p>Have any questions? Then take a look at our <a href="#">FAQ</a> or send us a message using our <a href="{% url 'contact' %}">contact us</a> form.</p>
+                </div>
+                <div class="row g-0">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <!-- Error Messages-->
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %} 
+                                    <div class="alert alert-danger">
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            {{ form.username }}
+                            <div class="form-text">150 characters or fewer. Accepted characters: letters, digits and the symbols: @ . + - _</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            {{ form.email }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">First Name</label>
+                            {{ form.first_name }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Last Name</label>
+                            {{ form.last_name }}
+                        </div>
+                        <button type="submit" class="btn form-button">Update</button>
+                        <a class="btn form-button" role="button" href="{% url 'change-password' %}">Change Password</a>
+                    </form>
+                </div>
             {% else %}
-                <h1 class="title">Error - Invalid Request</h1>
-                <p>You must ensure that you are currently logged in to be able to view your profile.</p>
-                <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
-                <p>If you already have an account, please <a href="{% url 'login' %}">login</a>.</p>
-                <p>Otherwise, please create a <a href="{% url 'register' %}">new account</a>.</p>
-                <a class="btn home-button" role="button" href="{% url 'home' %}">Return to Home</a>
+                <div class="row g-0">
+                    <h1 class="title">Error - Invalid Request</h1>
+                    <hr class="title-separator">
+                    <p>You must ensure that you are currently logged in to be able to view your profile.</p>
+                    <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
+                    <p>If you already have an account, please <a href="{% url 'login' %}">login</a>.</p>
+                    <p>Otherwise, please create a <a href="{% url 'register' %}">new account</a>.</p>
+                    <p>Have any other questions? Then take a look at our <a href="#">FAQ</a>.</p>
+                    <a class="btn home-button" role="button" href="{% url 'home' %}">Return to Home</a>
+                </div>
             {% endif %}
         </div>
     </div>

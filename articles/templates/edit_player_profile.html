@@ -14,55 +14,77 @@
 
 <div class="container p-3 m-0 border-0 main-container">
     <div class="row g-0 justify-content-center">
-        <div class="col-lg-6 col-12 p-3 form-container">
+        <div class="col-lg-4 col-12 p-3">
             {% if user.account.administrator == True %}
-                <h1 class="title">Edit Player Profile</h1>
-                <form method="POST">
-                    {% csrf_token %}
-                    {{ form.media }}
-                    <div class="mb-3">
-                        <label class="form-label">Name</label>
-                        {{ form.name }}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Date of Birth</label>
-                        {{ form.dob }}
-                        <div class="form-text">Format: YYYY-MM-DD</div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Position</label>
-                        {{ form.position }}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Nationality</label>
-                        {{ form.nationality }}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">International Goals & Caps</label>
-                        {{ form.international_caps_goals }}
-                        <div class="form-text">Format: Caps (Goals)</div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Playing Statistics</label>
-                        {{ form.player_stats }}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Manager Statistics</label>
-                        {{ form.manager_stats }}
-                        <div class="form-text">If this person has never been a manager, then please input 'null'</div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Current Job</label>
-                        {{ form.current_job }}
-                    </div>
-                    <button type="submit" class="btn form-button">Submit</button>
-                </form>
+                <div class="row g-0">
+                    <h1 class="title">Edit Player Profile</h1>
+                    <hr class="title-separator">
+                    <p>This form is used to edit an existing player profile.</p>
+                </div>
+                <div class="row g-0">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <!-- Error Messages-->
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %} 
+                                    <div class="alert alert-danger">
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+
+                        {{ form.media }}
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            {{ form.name }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Date of Birth</label>
+                            {{ form.dob }}
+                            <div class="form-text">Format: YYYY-MM-DD</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Position</label>
+                            {{ form.position }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nationality</label>
+                            {{ form.nationality }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">International Goals & Caps</label>
+                            {{ form.international_caps_goals }}
+                            <div class="form-text">Format: Caps (Goals)</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Playing Statistics</label>
+                            {{ form.player_stats }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Manager Statistics</label>
+                            {{ form.manager_stats }}
+                            <div class="form-text">If this person has never been a manager, then please input 'null'</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Current Job</label>
+                            {{ form.current_job }}
+                        </div>
+                        <button type="submit" class="btn form-button">Submit</button>
+                    </form>
+                </div>
             {% else %}
-                <h1 class="title">Error - Invalid Request</h1>
-                <p>You do not have the correct permissions to edit a player profile.</p>
-                <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
-                <p>If you would like to write for us, then please check out our <a href="{% url 'jobs' %}">openings</a>.</p>
-                <a class="btn home-button" role="button" href="{% url 'home' %}">Return to Home</a>
+                <div class="row g-0">
+                    <h1 class="title">Error - Invalid Request</h1>
+                    <hr class="title-separator">
+                    <p>You do not have the correct permissions to edit a player profile.</p>
+                    <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
+                    <p>If you would like to write for us, then please check out our <a href="{% url 'jobs' %}">openings</a>.</p>
+                    <p>Have any other questions? Then take a look at our <a href="#">FAQ</a>.</p>
+                    <a class="btn home-button" role="button" href="{% url 'home' %}">Return to Home</a>
+                </div>
             {% endif %}
         </div>
     </div>

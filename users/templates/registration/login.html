@@ -14,32 +14,54 @@
 
 <div class="container p-3 m-0 border-0 main-container">
     <div class="row g-0 justify-content-center">
-        <div class="col-lg-6 col-12 p-3 form-container">
+        <div class="col-lg-4 col-12 p-3">
             {% if not user.is_authenticated %}
-                <h1 class="title">Login</h1>
-                <form method="POST">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label class="form-label">Username</label>
-                        {{ form.username }}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Password</label>
-                        {{ form.password }}
-                    </div>
-                    <button type="submit" class="btn form-button">Login</button>
-                </form>
+                <div class="row g-0">
+                    <h1 class="title">Login</h1>
+                    <hr class="title-separator">
+                    <p>Login to your Clarets Hub account to gain complete access to the Clarets Hub site.</p>
+                    <p>Haven't got an account yet? Then click <a href="{% url 'register' %}">here</a> to register for Clarets Hub.</p>
+                    <p>Have any questions? Then take a look at our <a href="#">FAQ</a> or send us a message using our <a href="{% url 'contact' %}">contact us</a> form.</p>
+                </div>
+                <div class="row g-0">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <!-- Error Messages-->
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            {{ form.username }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            {{ form.password }}
+                        </div>
+                        <p><a href="#">Forgot your username?</a> | <a href="#">Forgot your password?</a></p>
+                        <button type="submit" class="btn form-button">Login</button>
+                    </form>
+                </div>
             {% else %}
-                <h1 class="title">Error - Invalid Request</h1>
-                <p>This form is unavailable since you are already logged in.</p>
-                <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
-                <a class="btn home-button" role="button" href="{% url 'home' %}">Return to Home</a>
+                <div class="row g-0">
+                    <h1 class="title">Error - Invalid Request</h1>
+                    <hr class="title-separator">
+                    <p>This form is unavailable since you are already logged in.</p>
+                    <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
+                    <p>Have any other questions? Then take a look at our <a href="#">FAQ</a>.</p>
+                    <a class="btn home-button" role="button" href="{% url 'home' %}">Return to Home</a>
+                </div>
             {% endif %}
         </div>
     </div>
 </div>
 
 <script>
+    // Adds the class "form-control" to all input elements
     var form = document.getElementsByTagName('input')
     for (var field in form){
             form[field].className += 'form-control'

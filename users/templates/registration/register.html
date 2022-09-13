@@ -14,54 +14,79 @@
 
 <div class="container p-3 m-0 border-0 main-container">
     <div class="row g-0 justify-content-center">
-        <div class="col-lg-6 col-12 p-3 form-container">
+        <div class="col-lg-4 col-12 p-3">
             {% if not user.is_authenticated %}
-                <h1 class="title">Register</h1>
-                <hr>
-                <form method="POST">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label class="form-label">Username</label>
-                        {{ form.username }}
-                        <div class="form-text">150 characters or fewer. Accepted characters: letters, digits and the symbols: @ . + - _</div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">First Name</label>
-                        {{ form.forename }}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Last Name</label>
-                        {{ form.surname }}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        {{ form.email }}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Password</label>
-                        {{ form.password1 }}
-                        <div class="form-text">
-                            <ul>
-                                <li>Your password cannot be too similar to your other personal information</li>
-                                <li>Your password must contain at least 8 characters</li>
-                                <li>Your password cannot be a commonly used password</li>
-                                <li>Your password cannot be entirely numeric</li>
-                            </ul>
+                <div class="row g-0">
+                    <h1 class="title">Register</h1>
+                    <hr class="title-separator">
+                    <p>
+                        Create your Clarets Hub account to gain complete access to the Clarets Hub site. Your first name, last name and email will always remain private and 
+                        never be publicly available on the site (unless you become a writer for Clarets Hub).
+                    </p>
+                    <p>Already have an account? Then log into your account <a href="{% url 'login' %}">here</a>.</p>
+                    <p>Have any questions? Then take a look at our <a href="#">FAQ</a> or send us a message using our <a href="{% url 'contact' %}">contact us</a> form.</p>
+                </div>
+                <div class="row g-0">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <!-- Error Messages-->
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %} 
+                                    <div class="alert alert-danger">
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            {{ form.username }}
+                            <div class="form-text">150 characters or fewer. Accepted characters: letters, digits and the symbols: @ . + - _</div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Confirm Password</label>
-                        {{ form.password2 }}
-                        <div class="form-text">Please enter the same password as above for verification</div>
-                    </div>
-                    <button type="submit" class="btn form-button">Register</button>
-                </form>
+                        <div class="mb-3">
+                            <label class="form-label">First Name</label>
+                            {{ form.forename }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Last Name</label>
+                            {{ form.surname }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            {{ form.email }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            {{ form.password1 }}
+                            <div class="form-text">
+                                <ul>
+                                    <li>Your password cannot be too similar to your other personal information</li>
+                                    <li>Your password must contain at least 8 characters</li>
+                                    <li>Your password cannot be a commonly used password</li>
+                                    <li>Your password cannot be entirely numeric</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirm Password</label>
+                            {{ form.password2 }}
+                            <div class="form-text">Please enter the same password as above for verification</div>
+                        </div>
+                        <button type="submit" class="btn form-button">Register</button>
+                    </form>
+                </div>
             {% else %}
-                <h1 class="title">Error - Invalid Request</h1>
-                <hr>
-                <p>This form is unavailable since you are already logged in.</p>
-                <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
-                <a class="btn home-button" role="button" href="{% url 'home' %}">Return to Home</a>
+                <div class="row g-0">
+                    <h1 class="title">Error - Invalid Request</h1>
+                    <hr class="title-separator">
+                    <p>This form is unavailable since you are already logged in.</p>
+                    <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
+                    <p>Have any other questions? Then take a look at our <a href="#">FAQ</a>.</p>
+                    <a class="btn home-button" role="button" href="{% url 'home' %}">Return to Home</a>
+                </div>
             {% endif %}
         </div>
     </div>

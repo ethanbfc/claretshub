@@ -14,68 +14,127 @@
 
 <div class="container p-3 m-0 border-0 main-container">
     <div class="row g-0 justify-content-center">
-        <div class="col-lg-6 col-12 p-3 form-container">
+        <div class="col-lg-4 col-12 p-3">
             {% if user.account.administrator == True %}
-                <h1 class="title">Create Article</h1>
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ form.media }}
-                    <div class="mb-3">
-                        <label class="form-label">Title</label>
-                        {{ form.title }}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Thumbnail</label>
-                        {{ form.thumbnail }}
-                        <div class="form-text">Recommended size: 1920x1080</div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Banner</label>
-                        {{ form.banner }}
-                        <div class="form-text">Player profiles do not require a banner</div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Snippet</label>
-                        {{ form.snippet }}
-                        <div class="form-text">
-                            This snippet is used for desktop devices on the homepage. Maximum of 340 characters, please aim for the length to be as close to this as possible.
+                <div class="row g-0">
+                    <h1 class="title">Create Article</h1>
+                    <hr class="title-separator">
+                    <p>
+                        This form is used to create an article. Please bear in mind that articles go live as soon as you click the submit button, so please ensure that there 
+                        are no errors beforehand.
+                    </p>
+                    <p>
+                        If you are creating a match report/player profile, then please create the <a href="{% url 'create-match-report' %}">match report</a> / 
+                        <a href="{% url 'create-player-profile' %}">player profile</a> before creating the article.
+                    </p>
+                    <p>Have any questions? Then send the administrators a message using our <a href="{% url 'contact' %}">contact us</a> form.</p>
+                </div>
+                <div class="row g-0">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <!-- Error Messages-->
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %} 
+                                    <div class="alert alert-danger">
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+
+                        {{ form.media }}
+                        <div class="mb-3">
+                            <label class="form-label">Title</label>
+                            {{ form.title }}
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Short Snippet</label>
-                        {{ form.short_snippet }}
-                        <div class="form-text">
-                            This snippet is used for mobile devices on the homepage and the latest articles section on article pages. Maximum of 115 characters, please aim 
-                            for the length to be as close to this as possible.
+                        <div class="mb-3">
+                            <label class="form-label">Thumbnail</label>
+                            {{ form.thumbnail }}
+                            <div class="form-text">Recommended size: 1920x1080</div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Category</label>
-                        {{ form.category }}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Body</label>
-                        {{ form.body }}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Match Report</label>
-                        {{ form.match_report }}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Player Profile</label>
-                        {{ form.player_profile }}
-                    </div>
-                    <button type="submit" class="btn form-button">Submit</button>
-                </form>
+                        <div class="mb-3">
+                            <label class="form-label">Banner</label>
+                            {{ form.banner }}
+                            <div class="form-text">Player profiles do not require a banner</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Snippet</label>
+                            {{ form.snippet }}
+                            <div class="form-text">
+                                This snippet is used for desktop devices on the homepage. Maximum of 340 characters, please aim for the length to be as close to this as possible.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Short Snippet</label>
+                            {{ form.short_snippet }}
+                            <div class="form-text">
+                                This snippet is used for mobile devices on the homepage and the latest articles section on article pages. Maximum of 115 characters, please aim 
+                                for the length to be as close to this as possible.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Category</label>
+                            {{ form.category }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Match Report</label>
+                            {{ form.match_report }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Player Profile</label>
+                            {{ form.player_profile }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Body</label>
+                            {{ form.body }}
+                        </div>
+                        <button type="submit" class="btn form-button">Submit</button>
+                    </form>
+                </div>
             {% else %}
-                <h1 class="title">Error - Invalid Request</h1>
-                <p>You do not have the correct permissions to create an article.</p>
-                <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
-                <p>If you would like to write for us, then please check out our <a href="{% url 'jobs' %}">openings</a>.</p>
-                <a class="btn home-button" role="button" href="{% url 'home' %}">Return to Home</a>
+                <div class="row g-0">
+                    <h1 class="title">Error - Invalid Request</h1>
+                    <hr class="title-separator">
+                    <p>You do not have the correct permissions to create an article.</p>
+                    <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
+                    <p>If you would like to write for us, then please check out our <a href="{% url 'jobs' %}">openings</a>.</p>
+                    <p>Have any other questions? Then take a look at our <a href="#">FAQ</a>.</p>
+                    <a class="btn home-button" role="button" href="{% url 'home' %}">Return to Home</a>
+                </div>
             {% endif %}
         </div>
     </div>
 </div>
+
+<script>
+    // Initially disable player profile/match report inputs
+    const match_report = document.getElementById('id_match_report');
+    const player_profile = document.getElementById('id_player_profile');
+
+    function setAllCategoriesDisabled() {
+        match_report.setAttribute('disabled', '');
+        match_report.value = "";
+        player_profile.setAttribute('disabled', '');
+        player_profile.value = "";
+    }
+
+    setAllCategoriesDisabled();
+
+    // Enable the above inputs based on the category selected
+    var category = document.getElementById("id_category");
+    category.addEventListener('change', categoryChange);
+
+    function categoryChange(event) {
+        setAllCategoriesDisabled();
+        if (document.getElementById('id_category').value == 2) {
+            match_report.removeAttribute('disabled');
+        }
+        else if (document.getElementById('id_category').value == 3) {
+            player_profile.removeAttribute('disabled');
+        }
+    }
+</script>
 
 {% endblock %}
