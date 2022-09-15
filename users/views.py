@@ -36,7 +36,7 @@ def RemoveAdministratorView(request):
     account = get_object_or_404(Account, user=request.POST.get('user_id'))
     account.administrator = False
     account.save(update_fields=["administrator"])
-    messages.success(request, (f"{account.user.username} is no longer an administrator."))
+    messages.success(request, (f"The user '{account.user.username}' has been removed as a writer."))
     return HttpResponseRedirect(reverse('staff'))
 
 def AddAdministratorView(request):
@@ -47,7 +47,7 @@ def AddAdministratorView(request):
             account = get_object_or_404(Account, user=this_user)
             account.administrator = True
             account.save(update_fields=["administrator"])
-            messages.success(request, (f"{this_user.username} is now an administrator."))
+            messages.success(request, (f"The user '{this_user.username}' has been added as a writer."))
         else:
-            messages.success(request, ("User with that username cannot be found."))
+            messages.success(request, (f"The user with the username '{request.POST['username']}' cannot be found."))
     return HttpResponseRedirect(reverse('staff'))

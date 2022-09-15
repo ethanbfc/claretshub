@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Accessibility{% endblock %}
+{% block title %}Accessibility - Clarets Hub{% endblock %}
 
 {% block head %}
 
@@ -13,26 +13,32 @@
 {% block content %}
  
 <div class="container p-3 m-0 border-0 main-container">
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <div class="container about-container">
-                <h1><b>Accessibility</b></h1>
-                <p>This is an accessibility statement from Clarets Hub.</p>
+    <div class="row g-0 justify-content-center">
+        <div class="col-lg-4 col-12 p-3">
+            <div class="row g-0">
+                <h1 class="title">Accessibility</h1>
+                <hr class="title-separator">
+                <small class="last-updated">Last Updated: 15th September 2022</small>
+                <p>This is the Clarets Hub accessibility statement.</p>
 
-                <h3><b>Conformance status</b></h3>
+                <h3 class="title">Conformance status</h3>
+                <hr class="subheading-separator">
                 <p>
                     The <a href="https://www.w3.org/WAI/standards-guidelines/wcag/">Web Content Accessibility Guidelines (WCAG)</a> defines requirements for designers and 
-                    developers to improve accessibility for people with disabilities. It defines three levels of conformance: Level A, Level AA, and Level AAA. Clarets Hub 
-                    is partially conformant with WCAG 2.1 level AA. Partially conformant means that some parts of the content do not fully conform to the accessibility 
-                    standard.
+                    developers to improve accessibility for people with disabilities. It defines three levels of conformance: A, AA, AAA.
+                </p>
+                <p>
+                    Clarets Hub is partially conformant with level AA of WCAG 2.1. This means that some parts of the content do not fully conform to the accessibility standard, 
+                    however we strive to make the site as accessible as possible.
                 </p>
 
-                <h3><b>Feedback</b></h3>
+                <h3 class="title">Feedback</h3>
+                <hr class="subheading-separator">
                 <p>
-                    We welcome your feedback on the accessibility of Clarets Hub. Please let us know if you encounter accessibility barriers on Clarets Hub:
-                    <ul><li>Email: claretshub@gmail.com</li></ul>
+                    We welcome your feedback on the accessibility of Clarets Hub. Please let us know if you encounter accessibility barriers on Clarets Hub by sending us a  
+                    message via email (claretshub@gmail.com) or our <a href="{% url 'contact' %}">contact us</a> form.
                 </p>
-                <p>We try to respond to feedback within one week.</p>
+                <p>We will try our best to respond to your feedback within one week.</p>
             </div>
         </div>
     </div>

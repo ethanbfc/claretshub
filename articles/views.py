@@ -69,12 +69,12 @@ class CategoryView(ListView):
 def RemoveCategoryView(request):
     category = get_object_or_404(Category, id=request.POST.get('category_id'))
     Category.objects.filter(id = category.id).delete()
-    messages.success(request, (f"Category deleted."))
+    messages.success(request, (f"The category '{category.title}' and any associated articles have been deleted."))
     return HttpResponseRedirect(reverse('categories'))
 
 def CreateCategoryView(request):
     if (request.method == "POST"):
         form = CreateCategoryForm(request.POST or None)
         form.save()
-        messages.success(request, (f"Category created."))
+        messages.success(request, (f"The category '{request.POST['title']}' has been created."))
     return HttpResponseRedirect(reverse('categories'))

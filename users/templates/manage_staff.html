@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Manage Staff{% endblock %}
+{% block title %}Manage Staff - Clarets Hub{% endblock %}
 
 {% block head %}
 
@@ -13,70 +13,98 @@
 {% block content %}
 
 <div class="container p-3 m-0 border-0 main-container">
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <div class="container form-container">
+    <div class="row g-0 justify-content-center">
+        <div class="col-lg-4 col-12 p-3">
+            <div class="container">
                 {% if user.is_staff %}
-                    <h1 class="title">Manage Staff</h1>
-                    <p class="text-muted">Administrator: create, edit and delete articles</p>
-                    <p class="text-muted">Staff: add and remove administrators (and can also perform administrator tasks)</p>
-
                     <!-- Alerts -->
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="alert alert-warning alert-dismissible fade show" id="alertMessage">
-                                {{ message }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" id="alertCloseBtn"></button>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-
-                    <hr>
-                    <h3 class="title">Current Staff</h3>
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Username</th>
-                                    <th scope="col">Administrator</th>
-                                    <th scope="col">Staff</th>
-                                    <th scope="col">Remove</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for user_account in object_list %}
-                                    {% if user_account.account.administrator == True %}
-                                        <tr>
-                                            <th scope="row">{{ user_account.username }}</th>
-                                            <td scope="row">{% if user_account.account.administrator == True %} ✅ {% else %} ❌ {% endif %}</td>
-                                            <td scope="row">{% if  user_account.is_staff == True %} ✅ {% else %} ❌ {% endif %}</td>
-                                            <td scope="row">
-                                                <form action="{% url 'remove-administrator' %}" method="POST">
-                                                    {% csrf_token %}
-                                                    <button class="btn btn-danger" type="submit" name="user_id" value="{{ user_account.pk }}">Remove</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    {% endif %}
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                    <div class="row g-0">
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-warning alert-dismissible fade show" id="alertMessage">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" id="alertCloseBtn"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                     </div>
 
-                    <hr>
-                    <h3 class="title">Add New Administrator</h3>
-                    <form action="{% url 'add-administrator' %}" method="POST">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label class="form-label">Username</label>
-                            <input type="text" class="form-control" name="username">
+                    <div class="row g-0">
+                        <h3 class="title">Current Administrators</h3>
+                        <hr class="title-separator">
+                        <p>Administrators have full control over Clarets Hub which includes adding/removing staff, creating content and responding to user queries.</p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Username</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for user_account in object_list %}
+                                        {% if user_account.is_staff == True %}
+                                            <tr>
+                                                <th scope="row">{{ user_account.username }}</th>
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
-                        <button class="btn btn-primary" type="submit">Submit</button>
-                    </form>
+                    </div>
+
+                    <div class="row g-0">
+                        <h3 class="title">Current Writers</h3>
+                        <hr class="title-separator">
+                        <p>Writers are responsible for creating content on Clarets Hub.</p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Username</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for user_account in object_list %}
+                                        {% if user_account.account.administrator == True %}
+                                            <tr>
+                                                <th scope="row">{{ user_account.username }}</th>
+                                                <td scope="row">
+                                                    <form action="{% url 'remove-administrator' %}" method="POST">
+                                                        {% csrf_token %}
+                                                        <button class="btn btn-danger" type="submit" name="user_id" value="{{ user_account.pk }}">Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row g-0">
+                        <h3 class="title">Add New Writer</h3>
+                        <hr class="title-separator">
+                        <form action="{% url 'add-administrator' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label class="form-label">Username</label>
+                                <input type="text" class="form-control" name="username">
+                            </div>
+                            <button class="btn form-button" type="submit">Submit</button>
+                        </form>
+                    </div>
                 {% else %}
-                    <h1 class="title">Invalid Request</h1>
-                    <p>You must be an administrator in order to manage staff.</p>
-                    <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
+                    <div class="row g-0">
+                        <h1 class="title">Error - Invalid Request</h1>
+                        <hr class="title-separator">
+                        <p>You must be an administrator in order to manage staff.</p>
+                        <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
+                        <p>Have any other questions? Then take a look at our <a href="#">FAQ</a>.</p>
+                        <a class="btn home-button" role="button" href="{% url 'home' %}">Return to Home</a>
+                    </div>
                 {% endif %}
             </div>
         </div>
