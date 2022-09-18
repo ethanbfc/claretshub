@@ -25,12 +25,16 @@ def ContactView(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             try:
-                send_mail(f"Contact Form Query: {request.POST['name']}", request.POST['message'], request.POST['email'], ["claretshub@gmail.com"])
+                msg = f"{request.POST['message']}\n\nNAME: {request.POST['name']}\nEMAIL: {request.POST['email']}"
+                send_mail(f"Contact Form: {request.POST['category']}", msg, request.POST['email'], ["claretshub@gmail.com"])
             except BadHeaderError:
                 return HttpResponse("Invalid header found.")
             messages.success(request, ("Thank you for your email. A member of our team will review your message and reply within the next week."))
             return redirect('contact')
     return render(request, 'contact.html', {'form': form})
+
+class FAQView(TemplateView):
+    template_name = 'faq.html'
 
 class AboutView(TemplateView):
     template_name = 'about.html'

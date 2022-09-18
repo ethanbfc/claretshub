@@ -100,7 +100,7 @@
                     <p>You do not have the correct permissions to create an article.</p>
                     <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
                     <p>If you would like to write for us, then please check out our <a href="{% url 'jobs' %}">openings</a>.</p>
-                    <p>Have any other questions? Then take a look at our <a href="#">FAQ</a>.</p>
+                    <p>Have any other questions? Then take a look at our <a href="{% url 'faq' %}">FAQ</a>.</p>
                     <a class="btn home-button" role="button" href="{% url 'home' %}">Return to Home</a>
                 </div>
             {% endif %}
@@ -108,7 +108,7 @@
     </div>
 </div>
 
-<script>
+<script type="text/javascript">
     // Initially disable player profile/match report inputs
     const match_report = document.getElementById('id_match_report');
     const player_profile = document.getElementById('id_player_profile');

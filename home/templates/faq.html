@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}FAQ - Clarets Hub{% endblock %}
+
+{% block head %}
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/footer_pages.css' %}">
+
+{% endblock %}
+
+{% block content %}
+ 
+<div class="container p-3 m-0 border-0 main-container">
+    <div class="row g-0 justify-content-center">
+        <div class="col-lg-4 col-12 p-3">
+            <div class="row g-0">
+                <h1 class="title">Frequently Asked Questions</h1>
+                <hr class="title-separator">
+                <p>This page features answers frequently asked questions about Clarets Hub.</p>
+
+                <div class="row g-0">
+                    <h3 class="title">General</h3>
+                    <hr class="subheading-separator">
+
+                    <!-- Question -->
+                    <a class="btn question-button" data-bs-toggle="collapse" data-bs-target="#general-1" role="button" aria-expanded="false" aria-controls="general-1">
+                        <p class="question-text">Why can I not access some pages?</p>
+                    </a>
+                    <div class="collapse" id="general-1">
+                        <div class="card card-body question-card-body">
+                            <p class="question-text">
+                                Some pages require certain permissions to be accessed. If you attempt to access these pages with the incorrect permissions, then a 'Invalid 
+                                Request' error will be displayed.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4 g-0">
+                    <h3 class="title">Account</h3>
+                    <hr class="subheading-separator">
+
+                    <!-- Question -->
+                    <a class="btn question-button" data-bs-toggle="collapse" data-bs-target="#account-1" role="button" aria-expanded="false" aria-controls="account-1">
+                        <p class="question-text">Why do I need to input my first and last name?</p>
+                    </a>
+                    <div class="collapse" id="account-1">
+                        <div class="card card-body question-card-body">
+                            <p class="question-text">
+                                For the majority of users, your name will not be used by Clarets Hub and will remain private (so other users will not be able to see it). Your 
+                                name will only be shown to the public if you are the author of an article.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Question -->
+                    <hr>
+                    <a class="btn question-button" data-bs-toggle="collapse" data-bs-target="#account-2" role="button" aria-expanded="false" aria-controls="account-2">
+                        <p class="question-text">What should I do if I cannot remember my username or password?</p>
+                    </a>
+                    <div class="collapse" id="account-2">
+                        <div class="card card-body question-card-body">
+                            <p class="question-text">
+                                Please have a look at our <a href="#">forgotten username</a> and <a href="#">forgotten password</a> pages.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

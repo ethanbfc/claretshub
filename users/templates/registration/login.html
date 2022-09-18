@@ -21,7 +21,10 @@
                     <hr class="title-separator">
                     <p>Login to your Clarets Hub account to gain complete access to the Clarets Hub site.</p>
                     <p>Haven't got an account yet? Then click <a href="{% url 'register' %}">here</a> to register for Clarets Hub.</p>
-                    <p>Have any questions? Then take a look at our <a href="#">FAQ</a> or send us a message using our <a href="{% url 'contact' %}">contact us</a> form.</p>
+                    <p>
+                        Have any questions? Then take a look at our <a href="{% url 'faq' %}">FAQ</a> or send us a message using our 
+                        <a href="{% url 'contact' %}">contact us</a> form.
+                    </p>
                 </div>
                 <div class="row g-0">
                     <form method="POST">
@@ -52,7 +55,7 @@
                     <hr class="title-separator">
                     <p>This form is unavailable since you are already logged in.</p>
                     <p>If you think this is a mistake, please <a href="{% url 'contact' %}">contact us</a> to get in touch with an administrator.</p>
-                    <p>Have any other questions? Then take a look at our <a href="#">FAQ</a>.</p>
+                    <p>Have any other questions? Then take a look at our <a href="{% url 'faq' %}">FAQ</a>.</p>
                     <a class="btn home-button" role="button" href="{% url 'home' %}">Return to Home</a>
                 </div>
             {% endif %}

@@ -27,3 +27,33 @@
     opacity: 60%;
     height: 1px !important;
 }
+
+/* FAQ */
+.question-button {
+    color: white;
+    background-color: #6c1d45;
+    border-color: #6c1d45;
+    font-family: 'Oswald';
+    font-size: 1.2rem;
+    text-align: left;
+    border-radius: 0;
+}
+
+.question-button:hover {
+    background-color: #6c1d45bd;
+    border-color: #6c1d45bd;
+}
+
+.question-button:focus {
+    box-shadow: 0 0 0 0;
+}
+
+.question-card-body {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0;
+    border: 1px solid #6c1d45bd;
+}
+
+.question-text {
+    margin-bottom: inherit;
+}
