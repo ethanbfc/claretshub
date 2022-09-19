@@ -134,17 +134,18 @@
 
                 {% elif article.category.title == "Player Profile" %}
                 <!-- Player Profile -->
-                    <h1 class="player-name">{{ article.player_profile.name }}</h1>
                     <div class="col-md-6 col-12">
                         <h5 class="details-subheading">Personal Details</h5>
+                        <hr class="details-subheading-separator">
                         <p>
                             <b class="details-category">Age</b>: <small class="details-text">{{ article.player_profile.dob | timesince | slice:":2" }}</small>
                             <br><b class="details-category">Date of Birth</b>: <small class="details-text">{{ article.player_profile.dob | date:'dS F o' }}</small>
                             <br><b class="details-category">Nationality</b>: <small class="details-text">{{ article.player_profile.nationality }}</small>
                         </p>
                     </div>
-                    <div class="col-md-6 col-12">
+                    <div class="col-md-6 col-12 mb-lg-0 mb-4">
                         <h5 class="details-subheading">Career</h5>
+                        <hr class="details-subheading-separator">
                         <b class="details-category">Position</b>: <small class="details-text">{{ article.player_profile.position }}</small>
                         <br><b class="details-category">International Caps (Goals)</b>: <small class="details-text">{{ article.player_profile.international_caps_goals }}</small>
                         <br><b class="details-category">Current Job</b>: <small class="details-text">{{ article.player_profile.current_job }}</small>
