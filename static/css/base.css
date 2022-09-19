@@ -48,6 +48,11 @@ body {
     color: white;
 }
 
+.social-media-icon:hover {
+    color: grey;
+}
+
+/* Footer */
 .footer {
     background-color: #6c1d45;
     font-family: 'Oswald';
@@ -69,10 +74,34 @@ body {
     color: white;
     text-decoration: none;
     text-transform: uppercase;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+    border-left: 4px solid #99d6ea;
+    padding-left: 0.5rem;
 }
 
-.footer-link:hover{
+.footer-link:hover {
+    color: grey;
+}
+
+.footer-logo {
+    width: 240px;
+    margin: auto;
+    display: block;
+}
+
+.footer-top {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+    padding-left: 0.5rem;
+}
+
+.footer-top:hover {
     color: grey;
 }
 
