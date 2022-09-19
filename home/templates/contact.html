@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Contact Us{% endblock %}
+{% block title %}Contact Us - Clarets Hub{% endblock %}
 
 {% block head %}
 
@@ -13,11 +13,11 @@
 {% block content %}
  
 <div class="container p-3 m-0 border-0 main-container">
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <div class="container form-container">
-                <h1><b>Contact Us</b></h1>
+    <div class="row g-0 justify-content-center">
+        <div class="col-lg-4 col-12 p-3">
+            <div class="row g-0">
 
+                <!-- Alerts -->
                 {% if messages %}
                     {% for message in messages %}
                         <div class="alert alert-warning alert-dismissible fade show" id="alertMessage">
@@ -27,7 +27,9 @@
                     {% endfor %}
                 {% endif %}
 
-                <p>Please use the form below to contact us.</p>
+                <h1 class="title">Contact Us</h1>
+                <hr class="title-separator">
+                <p>You can use the form below to send a message to the Clarets Hub staff. We will try to respond within one week and will reply to the email that you entered.</p>
                 <form method="POST">
                     {% csrf_token %}
                     <div class="mb-3">
@@ -35,8 +37,13 @@
                         {{ form.name }}
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Email</label>
+                        <label class="form-label">Your Email</label>
                         {{ form.email }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Category</label>
+                        {{ form.category }}
+                        <div class="form-text" id="category_information"></div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Message</label>
@@ -48,5 +55,31 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    var category = document.getElementById("id_category");
+    category.addEventListener('change', categoryChange);
+    var category_information = document.getElementById("category_information");
+
+    function categoryChange(event) {
+        if (document.getElementById('id_category').value == "Bug Report") {
+            category_information.innerHTML = "Please include as much information about the bug as possible, such as how it is caused and the impact it has (picutres are always appreciated).";
+        }
+        else if (document.getElementById('id_category').value == "Sponsor") {
+            category_information.innerHTML = "Please include the name of your company and your preferred contact details so that we can further this discussion.";
+        }
+        else if (document.getElementById('id_category').value == "Privacy / Data Request") {
+            category_information.innerHTML = "Please specify your request as specifically as possible.";
+        }
+        else if (document.getElementById('id_category').value == "Other") {
+            category_information.innerHTML = "Use this category when your message doesn't fit any of the other categories.";
+        }
+        else {
+            category_information.innerHTML = "";
+        }
+    }
+
+    categoryChange();
+</script>
 
 {% endblock %}
