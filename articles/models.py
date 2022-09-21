@@ -61,10 +61,8 @@ class PlayerProfile(models.Model):
 
 class Article(models.Model):
     title = models.CharField(max_length=255)
-    snippet = models.CharField(max_length=340)
-    short_snippet = models.CharField(max_length=115)
+    snippet = models.CharField(max_length=255)
     thumbnail = models.ImageField(upload_to='images/')
-    banner = models.ImageField(upload_to='images/', null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     body = RichTextField(default="Enter the article body here...")
     author = models.ForeignKey(User, on_delete=models.CASCADE)
