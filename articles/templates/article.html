@@ -8,6 +8,11 @@
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="{% static 'css/article.css' %}">
 
+<!-- SEO Tags -->
+<meta name="description" content="{{ article.snippet }}">
+<meta name="og:title" property="og:title" content="{{ article.title }}">
+<meta name="twitter:card" content="{{ article.snippet }}">
+
 {% endblock %}
 
 {% block content %}
