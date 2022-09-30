@@ -32,21 +32,21 @@ class StaffView(ListView):
     model = User
     template_name = 'manage_staff.html'
 
-def RemoveAdministratorView(request):
+def RemoveWriterView(request):
     account = get_object_or_404(Account, user=request.POST.get('user_id'))
-    account.administrator = False
-    account.save(update_fields=["administrator"])
+    account.writer = False
+    account.save(update_fields=["writer"])
     messages.success(request, (f"The user '{account.user.username}' has been removed as a writer."))
     return HttpResponseRedirect(reverse('staff'))
 
-def AddAdministratorView(request):
+def AddWriterView(request):
     if (request.method == "POST"):
         form = UsernameForm(request.POST or None)
         if (User.objects.filter(username=request.POST['username']).exists()):
             this_user = User.objects.get(username=request.POST['username'])
             account = get_object_or_404(Account, user=this_user)
-            account.administrator = True
-            account.save(update_fields=["administrator"])
+            account.writer = True
+            account.save(update_fields=["writer"])
             messages.success(request, (f"The user '{this_user.username}' has been added as a writer."))
         else:
             messages.success(request, (f"The user with the username '{request.POST['username']}' cannot be found."))

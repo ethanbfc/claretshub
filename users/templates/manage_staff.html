@@ -32,7 +32,7 @@
                     <div class="row g-0">
                         <h3 class="title">Current Administrators</h3>
                         <hr class="title-separator">
-                        <p>Administrators have full control over Clarets Hub which includes adding/removing staff, creating content and responding to user queries.</p>
+                        <p>Administrators have full control over Clarets Hub which includes adding/removing writers, creating content and responding to user queries.</p>
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead>
@@ -67,11 +67,11 @@
                                 </thead>
                                 <tbody>
                                     {% for user_account in object_list %}
-                                        {% if user_account.account.administrator == True %}
+                                        {% if user_account.account.writer == True %}
                                             <tr>
                                                 <th scope="row">{{ user_account.username }}</th>
                                                 <td scope="row">
-                                                    <form action="{% url 'remove-administrator' %}" method="POST">
+                                                    <form action="{% url 'remove-writer' %}" method="POST">
                                                         {% csrf_token %}
                                                         <button class="btn btn-danger" type="submit" name="user_id" value="{{ user_account.pk }}">Delete</button>
                                                     </form>
@@ -87,7 +87,7 @@
                     <div class="row g-0">
                         <h3 class="title">Add New Writer</h3>
                         <hr class="title-separator">
-                        <form action="{% url 'add-administrator' %}" method="POST">
+                        <form action="{% url 'add-writer' %}" method="POST">
                             {% csrf_token %}
                             <div class="mb-3">
                                 <label class="form-label">Username</label>

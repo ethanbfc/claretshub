@@ -15,7 +15,7 @@
 <div class="container p-3 m-0 border-0 main-container">
     <div class="row g-0 justify-content-center">
         <div class="col-lg-4 col-12 p-3">
-            {% if user.account.administrator == True or user.is_staff and user.id == article.author.id %}
+            {% if user.account.writer == True or user.is_staff and user.id == article.author.id %}
                 <div class="row g-0">
                     <h1 class="title">Edit Article</h1>
                     <hr class="title-separator">
