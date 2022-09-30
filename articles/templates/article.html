@@ -211,9 +211,9 @@
                         <div class="col-12 mb-3">
                     {% endif %}
                             <div class="card latest-articles-card">
-                                <a href="{% url 'article-details' article.pk %}"><img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail"></a>
+                                <a href="{% url 'article-details' pk=article.pk title=article.title|slugify %}"><img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail"></a>
                                 <div class="card-body">
-                                    <a class="card-title latest-articles-title" href="{% url 'article-details' article.pk %}">{{ article.title }}</a>
+                                    <a class="card-title latest-articles-title" href="{% url 'article-details' pk=article.pk title=article.title|slugify %}">{{ article.title }}</a>
                                 </div>
                             </div>
                         </div>

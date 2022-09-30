@@ -74,4 +74,4 @@ class Article(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("article-details", kwargs={'pk': self.id})
+        return reverse("article-details", kwargs={'pk': self.id, 'title': self.title.replace('-', ' ')})
