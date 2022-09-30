@@ -109,7 +109,9 @@
                                     <a class="dropdown-item main-nav-link-text" href="{% url 'create-article' %}">Article</a>
                                     <a class="dropdown-item main-nav-link-text" href="{% url 'create-match-report' %}">Match Report</a>
                                     <a class="dropdown-item main-nav-link-text" href="{% url 'create-player-profile' %}">Player Profile</a>
-                                    <a class="dropdown-item main-nav-link-text" href="{% url 'categories' %}">Manage Categories</a>
+                                    {% if user.is_staff %}
+                                        <a class="dropdown-item main-nav-link-text" href="{% url 'categories' %}">Manage Categories</a>
+                                    {% endif %}
                                 </div>
                             </li>
                         {% endif %}
