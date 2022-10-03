@@ -62,7 +62,7 @@
                             <div class="card">
                                 <a href="{% url 'article-details' pk=article.pk title=article.title|slugify %}"><img src="{{ article.thumbnail.url }}" class="img-fluid" alt="{{ article.title }} Thumbnail"></a>
                                 <div class="card-body">
-                                    <a class="btn category-button" role="button" href="">{{ article.category }}</a>
+                                    <a class="btn category-button mb-2" role="button" href="">{{ article.category }}</a>
                                     <h3><a class="card-title article-title" href="{% url 'article-details' pk=article.pk title=article.title|slugify %}">{{ article.title }}</a></h3>
                                     <p>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">

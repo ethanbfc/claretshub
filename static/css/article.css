@@ -5,6 +5,7 @@
 .title-bar {
     background-color: rgb(40, 40, 40);
     color: white;
+    font-family: Arial;
 }
 
 .category-button {
@@ -38,6 +39,7 @@
 
 .article-container {
     background-color: white;
+    font-family: Arial;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
 }
@@ -63,6 +65,10 @@
     font-family: 'Oswald';
     font-size: 1.2rem;
     font-weight: 500;
+}
+
+.latest-articles-title:hover {
+    color: rgba(0, 0, 0, 0.7);
 }
 
 .latest-articles-card {
